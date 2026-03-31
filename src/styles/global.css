@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  ::selection {
+    @apply bg-orange-500/30 text-orange-900 dark:text-orange-100;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600
+           text-white font-semibold rounded-lg transition-colors duration-200 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 border-2 border-orange-500
+           text-orange-500 hover:bg-orange-500 hover:text-white
+           font-semibold rounded-lg transition-colors duration-200 cursor-pointer;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl border border-gray-200
+           dark:border-gray-700 p-6 shadow-sm;
+  }
+
+  .section-wrap {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 py-16;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-3;
+  }
+
+  .section-sub {
+    @apply text-lg text-gray-500 dark:text-gray-400 mb-10 max-w-2xl;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-700
+           border border-gray-200 dark:border-gray-600
+           text-gray-900 dark:text-gray-100
+           focus:outline-none focus:ring-2 focus:ring-orange-500
+           transition-colors duration-200;
+  }
+
+  .form-select {
+    @apply w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-700
+           border border-gray-200 dark:border-gray-600
+           text-gray-900 dark:text-gray-100
+           focus:outline-none focus:ring-2 focus:ring-orange-500
+           transition-colors duration-200 cursor-pointer;
+  }
+
+  .result-card {
+    @apply mt-6 p-6 rounded-xl bg-orange-50 dark:bg-orange-500/10
+           border border-orange-200 dark:border-orange-500/30;
+  }
+
+  .result-row {
+    @apply flex justify-between items-center py-2
+           border-b border-orange-100 dark:border-orange-500/20 last:border-0;
+  }
+
+  .result-label {
+    @apply text-sm text-gray-600 dark:text-gray-400;
+  }
+
+  .result-value {
+    @apply font-bold text-gray-900 dark:text-white;
+  }
+
+  .result-highlight {
+    @apply text-orange-500 font-extrabold text-xl;
+  }
+
+  /* Prose overrides for articles */
+  .prose a {
+    @apply text-orange-500 hover:text-orange-600 no-underline hover:underline;
+  }
+
+  .prose strong {
+    @apply text-gray-900 dark:text-white;
+  }
+
+  .prose blockquote {
+    @apply border-orange-500 text-gray-600 dark:text-gray-400;
+  }
+
+  .prose h2, .prose h3 {
+    @apply text-gray-900 dark:text-white;
+  }
+
+  .prose-invert a {
+    @apply text-orange-400 hover:text-orange-300;
+  }
+}

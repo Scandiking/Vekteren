@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WeightChart from '../components/WeightChart.astro';
+import { siteConfig, totalLoss } from '../config';
+
+// TODO: Fill in siteConfig in src/config.ts with your actual numbers
+---
+
+<BaseLayout title="Min fremgang" description="Kris sin vektnedgangsreise – data, graf og erfaringer fra prosessen.">
+
+  <section class="bg-white dark:bg-gray-950">
+    <div class="section-wrap">
+      <div class="max-w-3xl mb-12">
+        <div class="inline-block text-xs uppercase tracking-widest font-semibold text-orange-500 mb-3">Min reise</div>
+        <h1 class="section-title">Fremgangen min</h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+          Her er den faktiske dataen fra min vektnedgangsreise. Grafen viser daglig vekt og et 7-dagers glidende snitt
+          – fordi daglig vekt spretter naturlig, og snittet forteller den egentlige historien.
+        </p>
+      </div>
+
+      <!-- Stats cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
+        <div class="card text-center">
+          <p class="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1">Startvekt</p>
+          <p class="text-3xl font-extrabold text-gray-900 dark:text-white">
+            {siteConfig.startWeight > 0 ? `${siteConfig.startWeight} kg` : '–'}
+          </p>
+        </div>
+        <div class="card text-center">
+          <p class="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1">Totalt nedgang</p>
+          <p class="text-3xl font-extrabold text-orange-500">
+            {totalLoss > 0 ? `${totalLoss} kg` : '–'}
+          </p>
+        </div>
+        <div class="card text-center">
+          <p class="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1">Nåværende vekt</p>
+          <p class="text-3xl font-extrabold text-gray-900 dark:text-white">
+            {siteConfig.currentWeight > 0 ? `${siteConfig.currentWeight} kg` : '–'}
+          </p>
+        </div>
+        <div class="card text-center">
+          <p class="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1">Tid</p>
+          <p class="text-3xl font-extrabold text-gray-900 dark:text-white">
+            {siteConfig.durationMonths > 0 ? `${siteConfig.durationMonths} mnd` : '–'}
+          </p>
+        </div>
+      </div>
+
+      <!-- Chart -->
+      <div class="card mb-12">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-1">Vektutvikling</h2>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+          Daglig vekt (lys linje) og 7-dagers glidende snitt (oransje). Vekten svinger naturlig – snittet forteller den ekte trenden.
+        </p>
+        <WeightChart />
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="card mb-12 border-orange-500/40 bg-orange-50 dark:bg-orange-500/5">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Et ord om tempo</h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+          Ja, dette har tatt tid. Over to år, med et snitt på rundt <strong>0,2 kg per uke</strong>.
+          Ikke 5 kg på 14 dager, ikke en kur, ikke en klubb med ukentlige veieseremonier.
+          Bare jevn, kjedelig, bærekraftig fremgang.
+        </p>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+          VG Vektklubb og lignende løsninger lokker med raske resultater – og mange oppnår dem.
+          Det de sjelden viser er hva som skjer etterpå. Jojo-slanking er ikke et karaktertrekk,
+          det er en fysiologisk konsekvens av å gå ned for raskt: kroppen responderer med økt
+          sult, redusert forbrenning og et brennende ønske om å ta igjen det tapte. Du legger på
+          deg mer enn du gikk ned, og syklusen starter på nytt.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+          Grafen under er ikke imponerende på Instagram. Men den er ekte – og den peker nedover
+          uten å ha pekt oppover igjen. Det er det eneste som faktisk betyr noe.
+        </p>
+      </div>
+
+      <!-- Methodology -->
+      <div class="max-w-3xl">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Hva jeg faktisk gjorde</h2>
+
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-sm">1</div>
+            <div>
+              <h3 class="font-bold text-gray-900 dark:text-white mb-1">Jeg begynte å telle kalorier</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                Ingenting revolusjonerende – bare en app (Cronometer), og ærlig logging av alt jeg spiste.
+                Første uke var en skikkelig øyeåpner for hva jeg egentlig spiste.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-sm">2</div>
+            <div>
+              <h3 class="font-bold text-gray-900 dark:text-white mb-1">Jeg tok det sakte</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                Jeg siktet på 500 kcal underskudd per dag, som tilsvarer omtrent 0,5 kg per uke.
+                Ikke mer. Sulting er ikke bærekraftig og gir tilbakegang.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-sm">3</div>
+            <div>
+              <h3 class="font-bold text-gray-900 dark:text-white mb-1">Jeg spiste nok protein</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                Protein holder deg mett lenger og bevarer muskelmassen under vektnedgang.
+                Jeg siktet på ca. 2 g per kilo kroppsvekt.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-sm">4</div>
+            <div>
+              <h3 class="font-bold text-gray-900 dark:text-white mb-1">Jeg trente jevnlig</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                Ikke for å forbrenne kalorier – men fordi trening er bra for kropp og sinn.
+                Styrketrening 2–3 ganger i uka hjalp meg å beholde muskelmassen.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>

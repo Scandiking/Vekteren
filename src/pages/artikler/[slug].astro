@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const artikler = await getCollection('artikler');
+  return artikler.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+
+  <article class="bg-white dark:bg-gray-950">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+
+      <!-- Back link -->
+      <a href="/artikler" class="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-orange-500 transition-colors mb-10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        Alle artikler
+      </a>
+
+      <!-- Header -->
+      <header class="mb-10">
+        <div class="flex flex-wrap gap-2 mb-4">
+          {entry.data.tags.map((tag: string) => (
+            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight mb-4">
+          {entry.data.title}
+        </h1>
+
+        <p class="text-xl text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+          {entry.data.description}
+        </p>
+
+        <div class="flex items-center gap-3 text-sm text-gray-400 dark:text-gray-500">
+          <span>Kris</span>
+          <span>·</span>
+          <time datetime={entry.data.publishDate.toISOString()}>
+            {entry.data.publishDate.toLocaleDateString('nb-NO', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+        </div>
+      </header>
+
+      <div class="border-t border-gray-200 dark:border-gray-800 pt-10">
+        <div class="prose prose-gray dark:prose-invert prose-lg max-w-none">
+          <Content />
+        </div>
+      </div>
+
+      <!-- Back link (bottom) -->
+      <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+        <a href="/artikler" class="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-orange-500 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          Tilbake til alle artikler
+        </a>
+      </div>
+    </div>
+  </article>
+
+</BaseLayout>

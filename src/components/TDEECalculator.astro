@@ -1,0 +1,145 @@
+---
+// TDEE Calculator using Mifflin-St Jeor formula
+---
+
+<div class="card">
+  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">TDEE-kalkulator</h2>
+  <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+    Finn ut hvor mange kalorier kroppen din faktisk bruker per dag.
+  </p>
+
+  <form id="tdee-form" class="grid sm:grid-cols-2 gap-4" novalidate>
+    <div>
+      <label class="form-label">Kjønn</label>
+      <div class="flex gap-3">
+        <label class="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 cursor-pointer transition-colors
+                      border-gray-200 dark:border-gray-600 has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50 dark:has-[:checked]:bg-orange-500/10">
+          <input type="radio" name="kjonn" value="mann" class="sr-only" checked />
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Mann</span>
+        </label>
+        <label class="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 cursor-pointer transition-colors
+                      border-gray-200 dark:border-gray-600 has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50 dark:has-[:checked]:bg-orange-500/10">
+          <input type="radio" name="kjonn" value="kvinne" class="sr-only" />
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Kvinne</span>
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <label for="alder" class="form-label">Alder</label>
+      <input type="number" id="alder" name="alder" min="15" max="100" placeholder="f.eks. 30" class="form-input" />
+    </div>
+
+    <div>
+      <label for="hoyde" class="form-label">Høyde (cm)</label>
+      <input type="number" id="hoyde" name="hoyde" min="100" max="250" placeholder="f.eks. 175" class="form-input" />
+    </div>
+
+    <div>
+      <label for="vekt" class="form-label">Vekt (kg)</label>
+      <input type="number" id="vekt" name="vekt" min="30" max="300" step="0.1" placeholder="f.eks. 85" class="form-input" />
+    </div>
+
+    <div class="sm:col-span-2">
+      <label for="aktivitet" class="form-label">Aktivitetsnivå</label>
+      <select id="aktivitet" name="aktivitet" class="form-select">
+        <option value="1.2">Stillesittende – lite/ingen trening</option>
+        <option value="1.375">Lett aktiv – trening 1–3 dager/uke</option>
+        <option value="1.55" selected>Moderat aktiv – trening 3–5 dager/uke</option>
+        <option value="1.725">Veldig aktiv – trening 6–7 dager/uke</option>
+        <option value="1.9">Ekstra aktiv – hardt fysisk arbeid + trening</option>
+      </select>
+    </div>
+
+    <div class="sm:col-span-2">
+      <button type="submit" class="btn-primary w-full justify-center">
+        Beregn
+      </button>
+    </div>
+  </form>
+
+  <div id="tdee-result" class="hidden result-card">
+    <div class="mb-4">
+      <p class="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-1">Grunnomsetning (BMR)</p>
+      <p id="bmr-value" class="result-highlight">– kcal</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Kalorier kroppen trenger i ro</p>
+    </div>
+
+    <div class="mb-6">
+      <p class="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-1">Totalt daglig forbruk (TDEE)</p>
+      <p id="tdee-value" class="result-highlight">– kcal</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Kalorier du faktisk bruker med ditt aktivitetsnivå</p>
+    </div>
+
+    <p class="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-3">Kalori-mål</p>
+    <div class="space-y-0">
+      <div class="result-row">
+        <span class="result-label">Aggressiv vektnedgang (−500 kcal)</span>
+        <span id="goal-aggressive" class="result-value">–</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Moderat vektnedgang (−250 kcal)</span>
+        <span id="goal-moderate" class="result-value">–</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Vedlikehold</span>
+        <span id="goal-maintain" class="result-value">–</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Gradvis økning (+250 kcal)</span>
+        <span id="goal-gain" class="result-value">–</span>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-400 dark:text-gray-500 mt-4">
+      Basert på Mifflin-St Jeor-formelen. Verdiene er estimater – individuelle forskjeller forekommer.
+    </p>
+  </div>
+
+  <div id="tdee-error" class="hidden mt-4 p-3 rounded-lg bg-red-50 dark:bg-red-500/10 text-sm text-red-600 dark:text-red-400">
+    Fyll inn alle feltene med gyldige verdier.
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('tdee-form') as HTMLFormElement;
+  const result = document.getElementById('tdee-result')!;
+  const errorMsg = document.getElementById('tdee-error')!;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+
+    const kjonn = data.get('kjonn') as string;
+    const alder = parseFloat(data.get('alder') as string);
+    const hoyde = parseFloat(data.get('hoyde') as string);
+    const vekt = parseFloat(data.get('vekt') as string);
+    const aktivitet = parseFloat(data.get('aktivitet') as string);
+
+    if (!kjonn || isNaN(alder) || isNaN(hoyde) || isNaN(vekt) || isNaN(aktivitet)) {
+      errorMsg.classList.remove('hidden');
+      result.classList.add('hidden');
+      return;
+    }
+
+    errorMsg.classList.add('hidden');
+
+    // Mifflin-St Jeor
+    const bmr = kjonn === 'mann'
+      ? 10 * vekt + 6.25 * hoyde - 5 * alder + 5
+      : 10 * vekt + 6.25 * hoyde - 5 * alder - 161;
+
+    const tdee = Math.round(bmr * aktivitet);
+    const bmrRounded = Math.round(bmr);
+
+    document.getElementById('bmr-value')!.textContent = `${bmrRounded} kcal`;
+    document.getElementById('tdee-value')!.textContent = `${tdee} kcal`;
+    document.getElementById('goal-aggressive')!.textContent = `${tdee - 500} kcal`;
+    document.getElementById('goal-moderate')!.textContent = `${tdee - 250} kcal`;
+    document.getElementById('goal-maintain')!.textContent = `${tdee} kcal`;
+    document.getElementById('goal-gain')!.textContent = `${tdee + 250} kcal`;
+
+    result.classList.remove('hidden');
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>

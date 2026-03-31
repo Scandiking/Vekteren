@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BMICalculator from '../components/BMICalculator.astro';
+import MacroCalculator from '../components/MacroCalculator.astro';
+---
+
+<BaseLayout title="Kalkulatorer" description="BMI-kalkulator og makrokalkulator – enkle verktøy for å forstå kroppen din bedre.">
+
+  <section class="bg-white dark:bg-gray-950">
+    <div class="section-wrap">
+      <div class="inline-block text-xs uppercase tracking-widest font-semibold text-orange-500 mb-3">Verktøy</div>
+      <h1 class="section-title">Kalkulatorer</h1>
+      <p class="section-sub">
+        Enkle beregninger som hjelper deg å forstå kroppen din bedre. Husk at alle verdiene er estimater –
+        bruk dem som utgangspunkt, ikke fasit. TDEE-kalkulatoren finner du på <a href="/kalorier" class="text-orange-500 hover:underline">Kalorier-siden</a>.
+      </p>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <BMICalculator />
+        <MacroCalculator />
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

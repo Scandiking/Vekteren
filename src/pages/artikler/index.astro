@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const artikler = (await getCollection('artikler'))
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+---
+
+<BaseLayout title="Artikler" description="Artikler og tanker om vektnedgang, mat, trening og motivasjon.">
+
+  <section class="bg-white dark:bg-gray-950">
+    <div class="section-wrap">
+      <div class="inline-block text-xs uppercase tracking-widest font-semibold text-orange-500 mb-3">Blogg</div>
+      <h1 class="section-title">Artikler</h1>
+      <p class="section-sub">
+        Fordypninger, tanker og erfaringer. Noen er kortere, noen er lange.
+        Alle er ærlige.
+      </p>
+
+      {artikler.length === 0 ? (
+        <div class="card text-center py-16 text-gray-400 dark:text-gray-500">
+          <p class="text-lg mb-2">Ingen artikler ennå.</p>
+          <p class="text-sm">Legg til <code>.md</code>-filer i <code>src/content/artikler/</code> for å komme i gang.</p>
+        </div>
+      ) : (
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {artikler.map(artikkel => (
+            <a
+              href={`/artikler/${artikkel.slug}`}
+              class="card hover:border-orange-500/50 transition-all duration-200 hover:-translate-y-1 group flex flex-col"
+            >
+              <div class="flex flex-wrap gap-2 mb-3">
+                {artikkel.data.tags.map((tag: string) => (
+                  <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <h2 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors mb-2">
+                {artikkel.data.title}
+              </h2>
+
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1 line-clamp-3">
+                {artikkel.data.description}
+              </p>
+
+              <p class="text-xs text-gray-400 dark:text-gray-500 mt-4">
+                {artikkel.data.publishDate.toLocaleDateString('nb-NO', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </p>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+</BaseLayout>

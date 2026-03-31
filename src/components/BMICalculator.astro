@@ -1,0 +1,106 @@
+---
+// BMI Calculator
+---
+
+<div class="card">
+  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">BMI-kalkulator</h2>
+  <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+    Body Mass Index – et grovt mål på forholdet mellom vekt og høyde.
+  </p>
+
+  <form id="bmi-form" class="grid sm:grid-cols-2 gap-4" novalidate>
+    <div>
+      <label for="bmi-hoyde" class="form-label">Høyde (cm)</label>
+      <input type="number" id="bmi-hoyde" min="100" max="250" placeholder="f.eks. 175" class="form-input" />
+    </div>
+    <div>
+      <label for="bmi-vekt" class="form-label">Vekt (kg)</label>
+      <input type="number" id="bmi-vekt" min="30" max="300" step="0.1" placeholder="f.eks. 85" class="form-input" />
+    </div>
+    <div class="sm:col-span-2">
+      <button type="submit" class="btn-primary w-full justify-center">Beregn BMI</button>
+    </div>
+  </form>
+
+  <div id="bmi-result" class="hidden result-card">
+    <div class="flex items-end justify-between mb-4">
+      <div>
+        <p class="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-1">Din BMI</p>
+        <p id="bmi-value" class="result-highlight">–</p>
+      </div>
+      <p id="bmi-category" class="text-lg font-bold text-gray-700 dark:text-gray-300">–</p>
+    </div>
+
+    <!-- BMI scale bar -->
+    <div class="mb-4">
+      <div class="h-3 rounded-full overflow-hidden flex">
+        <div class="flex-1 bg-blue-400" title="Undervekt < 18.5"></div>
+        <div class="flex-1 bg-green-400" title="Normalvekt 18.5–24.9"></div>
+        <div class="flex-1 bg-yellow-400" title="Overvekt 25–29.9"></div>
+        <div class="flex-1 bg-red-400" title="Fedme ≥ 30"></div>
+      </div>
+      <div class="flex justify-between text-xs text-gray-400 mt-1">
+        <span>Undervekt</span>
+        <span>Normal</span>
+        <span>Overvekt</span>
+        <span>Fedme</span>
+      </div>
+    </div>
+
+    <div class="space-y-0">
+      <div class="result-row">
+        <span class="result-label">Undervekt</span>
+        <span class="result-value">Under 18,5</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Normalvekt</span>
+        <span class="result-value">18,5 – 24,9</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Overvekt</span>
+        <span class="result-value">25,0 – 29,9</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Fedme (klasse I)</span>
+        <span class="result-value">30,0 – 34,9</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Fedme (klasse II+)</span>
+        <span class="result-value">35,0 og over</span>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-400 dark:text-gray-500 mt-4">
+      BMI tar ikke hensyn til muskelmasse, alder eller kjønn. Bruk det som et utgangspunkt, ikke en fasit.
+    </p>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('bmi-form') as HTMLFormElement;
+  const result = document.getElementById('bmi-result')!;
+
+  function getBMICategory(bmi: number): string {
+    if (bmi < 18.5) return 'Undervekt';
+    if (bmi < 25) return 'Normalvekt';
+    if (bmi < 30) return 'Overvekt';
+    if (bmi < 35) return 'Fedme (klasse I)';
+    return 'Fedme (klasse II+)';
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const hoyde = parseFloat((document.getElementById('bmi-hoyde') as HTMLInputElement).value);
+    const vekt = parseFloat((document.getElementById('bmi-vekt') as HTMLInputElement).value);
+
+    if (isNaN(hoyde) || isNaN(vekt) || hoyde <= 0 || vekt <= 0) return;
+
+    const bmi = vekt / Math.pow(hoyde / 100, 2);
+
+    document.getElementById('bmi-value')!.textContent = bmi.toFixed(1);
+    document.getElementById('bmi-category')!.textContent = getBMICategory(bmi);
+
+    result.classList.remove('hidden');
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>

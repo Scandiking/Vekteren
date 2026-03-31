@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const treningsprinsipper = [
+  {
+    title: 'Trening er ikke straff',
+    body: 'Du trener ikke for å "brenne opp" det du spiste. Du trener fordi kroppen er laget for bevegelse, og fordi det gir deg energi, humør og helse du ikke får på noen annen måte.',
+  },
+  {
+    title: 'Konsistens slår intensitet',
+    body: 'En halvtime jevnlig tre ganger i uka over et år er uendelig mye bedre enn en måned med ekstrem trening etterfulgt av seks måneder på sofaen.',
+  },
+  {
+    title: 'Progressiv overbelastning',
+    body: 'Kroppen tilpasser seg. For å fortsette å bli sterkere og bygge muskler, må du gradvis øke belastningen – mer vekt, flere repetisjoner, eller kortere hvile.',
+  },
+  {
+    title: 'Restitusjon er trening',
+    body: 'Muskler bygges ikke under trening – de bygges mens du hviler. Søvn og hviledager er ikke latskap, de er en del av programmet.',
+  },
+];
+---
+
+<BaseLayout title="Trening" description="Treningsprinsipper for vektnedgang og helse – uten overflødig kompleksitet.">
+
+  <section class="bg-white dark:bg-gray-950">
+    <div class="section-wrap max-w-4xl mx-auto">
+      <div class="inline-block text-xs uppercase tracking-widest font-semibold text-orange-500 mb-3">Fysisk aktivitet</div>
+      <h1 class="section-title">Trening – og hva den faktisk gjør</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-12">
+        Trening er fantastisk for deg. Men den vil neppe drive vektnedgangen din alene –
+        og det er greit. Her er det du faktisk trenger å vite.
+      </p>
+
+      <!-- Principles grid -->
+      <div class="grid sm:grid-cols-2 gap-6 mb-16">
+        {treningsprinsipper.map(p => (
+          <div class="card">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">{p.title}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="prose prose-gray dark:prose-invert max-w-none mb-16">
+
+        <h2>Trening og vektnedgang – forholdet er mer komplisert enn du tror</h2>
+        <p>
+          En times joggetur forbrenner kanskje 400–600 kcal. En Kvikk Lunsj inneholder 220 kcal.
+          Regnestykket er enkelt – og frustrerende. Det er mye lettere å la være å spise en sjokolade
+          enn å jogge den av seg.
+        </p>
+        <p>
+          I tillegg viser forskning at økt trening ofte fører til økt sultfølelse og mer hvile resten
+          av dagen (NEAT – non-exercise activity thermogenesis), slik at det faktiske nettobidraget
+          til et kaloriunderskudd er mindre enn folk forventer.
+        </p>
+        <p>
+          Det betyr <em>ikke</em> at trening er bortkastet. Det betyr at kjøkken + trening er langt
+          bedre enn kjøkken alene, men at trening alene sjelden holder.
+        </p>
+
+        <h2>NEAT – det undervurderte forbrenningsbidraget</h2>
+        <p>
+          NEAT (Non-Exercise Activity Thermogenesis) er all bevegelse du gjør utenom planlagt trening:
+          gå til bussen, stå i stedet for å sitte, ta trapper, hamstre med hendene. For noen mennesker
+          utgjør NEAT 2000+ kcal om dagen. Det er mer enn de fleste forbrenner på en time i gymsalen.
+        </p>
+        <p>
+          Det praktiske rådet: <strong>gå mer</strong>. Et skritteller-mål på 8000–10 000 skritt
+          om dagen er en enkel og effektiv måte å øke det totale forbruket på.
+        </p>
+
+        <h2>Styrketrening under vektnedgang</h2>
+        <p>
+          Når du spiser i kaloriunderskudd, vil kroppen prøve å bryte ned både fett og muskler for energi.
+          Styrketrening sender et signal til kroppen om at musklene trengs – og reduserer muskeltapet
+          betydelig. Det er ikke nødvendig å bli en kroppsbygger, men 2–3 styrkeøkter per uke gjør
+          en stor forskjell for sammensetningen av vektnedgangen.
+        </p>
+
+        <h2>Kondisjonstrening</h2>
+        <p>
+          Løping, sykling, svømming, roing – kondisjonstrening er utmerket for hjerte- og karhelse,
+          utholdenhet og velvære. Det er også fin måte å øke det totale energiforbruket. Finn noe
+          du faktisk liker å gjøre, fordi det er det du vil fortsette med.
+        </p>
+
+        <h2>For deg som er nybegynner</h2>
+        <p>
+          Start enkelt. En halv times rask spasertur hver dag er et utmerket fundament.
+          Legg til 2 styrkeøkter i uka – begynn med kroppsvektøvelser som knebøy,
+          utfall, push-ups og planke. Øk gradvis.
+        </p>
+        <p>
+          Det viktigste er å komme i gang og bygge vanen. Programmet kan alltid optimaliseres
+          etterpå – men en imperfekt rutine du faktisk følger er uendelig bedre enn et perfekt
+          program du aldri starter på.
+        </p>
+
+        <h2>Eksempeluke (nybegynner)</h2>
+      </div>
+
+      <!-- Example week table -->
+      <div class="card mb-8 overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+              <th class="text-left py-3 pr-4 font-semibold text-gray-900 dark:text-white">Dag</th>
+              <th class="text-left py-3 pr-4 font-semibold text-gray-900 dark:text-white">Aktivitet</th>
+              <th class="text-left py-3 font-semibold text-gray-900 dark:text-white">Varighet</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            {[
+              ['Mandag', 'Styrketrening (helkropp)', '30–45 min'],
+              ['Tirsdag', 'Rask spasertur', '30 min'],
+              ['Onsdag', 'Hvildag / lett stretching', '–'],
+              ['Torsdag', 'Styrketrening (helkropp)', '30–45 min'],
+              ['Fredag', 'Rask spasertur', '30 min'],
+              ['Lørdag', 'Valgfri aktivitet (sykkel, svømming, tur)', '45–60 min'],
+              ['Søndag', 'Hvildag', '–'],
+            ].map(([dag, akt, var_]) => (
+              <tr>
+                <td class="py-3 pr-4 font-medium text-gray-700 dark:text-gray-300">{dag}</td>
+                <td class="py-3 pr-4 text-gray-600 dark:text-gray-400">{akt}</td>
+                <td class="py-3 text-gray-500 dark:text-gray-500">{var_}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        Dette er et eksempel, ikke et mandat. Tilpass etter din hverdag og ditt utgangspunkt.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

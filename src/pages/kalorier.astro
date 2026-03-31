@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TDEECalculator from '../components/TDEECalculator.astro';
+---
+
+<BaseLayout title="Kalorier" description="Hva er kalorier, hvordan fungerer et kaloriunderskudd, og hvordan du kan telle kalorier uten å bli gal.">
+
+  <section class="bg-white dark:bg-gray-950">
+    <div class="section-wrap max-w-4xl mx-auto">
+      <div class="inline-block text-xs uppercase tracking-widest font-semibold text-orange-500 mb-3">Grunnleggende</div>
+      <h1 class="section-title">Kalorier – det eneste som teller</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-12">
+        Alle dietter som faktisk fungerer gjør én ting: de skaper et kaloriunderskudd. Enten du spiser
+        lavkarbo, faste, vegansk eller middelhavskost – mekanismen er alltid den samme.
+      </p>
+
+      <div class="prose prose-gray dark:prose-invert max-w-none mb-16">
+        <h2>Hva er egentlig en kalori?</h2>
+        <p>
+          En kalori er en enhet for energi. Maten du spiser inneholder energi i form av proteiner,
+          fett og karbohydrater. Kroppen din bruker denne energien til å holde seg i live – alt fra
+          hjerteslag til tankevirksomhet til å løfte en vektstang.
+        </p>
+        <p>
+          Proteiner og karbohydrater inneholder 4 kcal per gram. Fett inneholder 9 kcal per gram.
+          Alkohol inneholder 7 kcal per gram – og er den eneste av disse som kroppen ikke kan lagre
+          effektivt, men prioriterer å forbrenne fremfor alt annet.
+        </p>
+
+        <h2>Energibalansen – det enkle regnestykket</h2>
+        <p>
+          Hvis du spiser mer enn du bruker, lagrer kroppen overskuddet som fett.
+          Hvis du spiser mindre enn du bruker, tapper kroppen fettlagrene for energi.
+          Det er alt. Det er ingen unntak.
+        </p>
+        <p>
+          Et underskudd på <strong>500 kcal per dag</strong> gir teoretisk sett omtrent
+          <strong>0,5 kg vektnedgang per uke</strong> (siden 1 kg fett ≈ 7700 kcal).
+          I praksis varierer det litt, men størrelsesordenen stemmer godt.
+        </p>
+
+        <h2>Trenger jeg å telle kalorier?</h2>
+        <p>
+          Nei – men det hjelper enormt. De aller fleste mennesker <em>tror</em> de spiser lite,
+          men undervurderer faktisk inntaket med 20–40%. Det er ikke moralsk svakhet, det er bare
+          dårlig kalibrering. En periode med nøyaktig kaloritelling gir deg et ærlig kart over
+          ditt eget inntak.
+        </p>
+        <p>
+          <strong>MyFitnessPal</strong> er det enkleste alternativet – stor matdatabase, fungerer fint i gratis-versjon.
+          Logg ærlig, vei maten de første ukene, og du vil raskt lære hva ting faktisk inneholder.
+        </p>
+
+        <h2>Hvor fort går det?</h2>
+        <p>
+          Et underskudd på <strong>500 kcal per dag</strong> tilsvarer teoretisk sett rundt
+          0,5 kg per uke. I praksis er individuell variasjon stor – metabolisme, vannretensjon,
+          aktivitetsnivå og målenøyaktighet spiller inn. Et mer realistisk og bærekraftig snitt
+          for mange er <strong>0,2–0,3 kg per uke</strong>. Det høres sakte ut, men det er
+          faktisk slik varig vektnedgang ser ut.
+        </p>
+
+        <h2>Viktig: protein i et underskudd</h2>
+        <p>
+          Når du spiser i underskudd, vil kroppen tære på <em>både</em> fett og muskler for energi.
+          Du vil bevare mye mer muskelmasse hvis du spiser tilstrekkelig protein – rundt
+          <strong>1,6–2,2 g per kg kroppsvekt per dag</strong>. Protein metter også godt, noe som
+          gjør underskuddet lettere å holde. Egg, melk og havregryn er utmerkede hverdagskilder.
+          Kasein-proteinpulver (fra melk) er et godt supplement – det fordøyes saktere enn whey
+          og holder deg mett lenger.
+        </p>
+
+        <h2>Kunstige søtningsmidler – ikke en frisone</h2>
+        <p>
+          Brus og snacks merket "sukkerfri" virker som en enkel snarvei, men aspartam og acesulfam K
+          kan stimulere utskillelsen av <strong>ghrelin</strong> – sulthormonet – og opprettholde
+          kroppens forventning om at søt smak betyr energi. Resultatet er økt sult og svekket
+          metthetsfølelse, stikk i strid med hensikten.
+        </p>
+        <p>
+          I tillegg holder kunstig søtning ved like trangen til søtt og gjør det vanskeligere å
+          rekalibrere smaksbildet. Brus og drops er ikke en del av et vektnedgangsregime
+          – uansett hva kalorietiketten sier.
+        </p>
+
+        <h2>Ikke kutt for mye</h2>
+        <p>
+          Et for aggressivt underskudd (mer enn 700–800 kcal/dag) øker sulten, reduserer
+          energinivået, og fører ofte til en "rebound" der man spiser igjen det man gikk ned.
+          <strong>Sakte og stødig er ikke bare mer bærekraftig – det er faktisk raskere</strong>,
+          fordi du ikke trenger å gå om igjen.
+        </p>
+      </div>
+
+      <!-- TDEE Calculator -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Beregn ditt energibehov</h2>
+        <p class="text-gray-500 dark:text-gray-400 mb-6">
+          Finn ut hva kroppen din faktisk bruker, og hva du bør spise for å nå målet ditt.
+        </p>
+        <TDEECalculator />
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

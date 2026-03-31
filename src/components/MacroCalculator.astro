@@ -1,0 +1,138 @@
+---
+// Macro calculator — splits daily calories into protein, fat, carbs
+---
+
+<div class="card">
+  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Makrokalkulator</h2>
+  <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+    Finn en fornuftig fordeling av protein, fett og karbohydrater for ditt mål.
+  </p>
+
+  <form id="macro-form" class="grid sm:grid-cols-2 gap-4" novalidate>
+    <div>
+      <label for="macro-kcal" class="form-label">Daglig kaloriinntak (kcal)</label>
+      <input type="number" id="macro-kcal" min="800" max="6000" placeholder="f.eks. 1800" class="form-input" />
+    </div>
+    <div>
+      <label for="macro-vekt" class="form-label">Kroppsvekt (kg)</label>
+      <input type="number" id="macro-vekt" min="30" max="300" step="0.1" placeholder="f.eks. 85" class="form-input" />
+    </div>
+    <div class="sm:col-span-2">
+      <label for="macro-mal" class="form-label">Mål</label>
+      <select id="macro-mal" class="form-select">
+        <option value="loss">Vektnedgang</option>
+        <option value="maintain">Vedlikehold</option>
+        <option value="gain">Vektøkning / muskelbygging</option>
+      </select>
+    </div>
+    <div class="sm:col-span-2">
+      <button type="submit" class="btn-primary w-full justify-center">Beregn makroer</button>
+    </div>
+  </form>
+
+  <div id="macro-result" class="hidden result-card">
+    <p class="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-4">Anbefalt daglig fordeling</p>
+
+    <!-- Protein -->
+    <div class="mb-4">
+      <div class="flex justify-between items-baseline mb-1">
+        <span class="font-semibold text-gray-800 dark:text-gray-200">Protein</span>
+        <span id="protein-g" class="result-highlight text-base">– g</span>
+      </div>
+      <div class="w-full h-2 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+        <div id="protein-bar" class="h-full bg-orange-500 rounded-full transition-all duration-500" style="width:0%"></div>
+      </div>
+      <p id="protein-pct" class="text-xs text-gray-500 dark:text-gray-400 mt-1">– kcal · –%</p>
+    </div>
+
+    <!-- Fat -->
+    <div class="mb-4">
+      <div class="flex justify-between items-baseline mb-1">
+        <span class="font-semibold text-gray-800 dark:text-gray-200">Fett</span>
+        <span id="fat-g" class="result-highlight text-base">– g</span>
+      </div>
+      <div class="w-full h-2 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+        <div id="fat-bar" class="h-full bg-yellow-400 rounded-full transition-all duration-500" style="width:0%"></div>
+      </div>
+      <p id="fat-pct" class="text-xs text-gray-500 dark:text-gray-400 mt-1">– kcal · –%</p>
+    </div>
+
+    <!-- Carbs -->
+    <div class="mb-4">
+      <div class="flex justify-between items-baseline mb-1">
+        <span class="font-semibold text-gray-800 dark:text-gray-200">Karbohydrater</span>
+        <span id="carb-g" class="result-highlight text-base">– g</span>
+      </div>
+      <div class="w-full h-2 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+        <div id="carb-bar" class="h-full bg-blue-400 rounded-full transition-all duration-500" style="width:0%"></div>
+      </div>
+      <p id="carb-pct" class="text-xs text-gray-500 dark:text-gray-400 mt-1">– kcal · –%</p>
+    </div>
+
+    <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">
+      Protein: 4 kcal/g · Fett: 9 kcal/g · Karbohydrater: 4 kcal/g.
+      Juster etter egne preferanser og toleranse.
+    </p>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('macro-form') as HTMLFormElement;
+  const result = document.getElementById('macro-result')!;
+
+  // Protein g/kg targets by goal
+  const proteinPerKg: Record<string, number> = {
+    loss: 2.0,
+    maintain: 1.6,
+    gain: 2.2,
+  };
+
+  // Fat fraction of total kcal
+  const fatFraction: Record<string, number> = {
+    loss: 0.28,
+    maintain: 0.30,
+    gain: 0.25,
+  };
+
+  function setBar(id: string, pct: number) {
+    (document.getElementById(id) as HTMLElement).style.width = `${Math.min(100, pct)}%`;
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const kcal = parseFloat((document.getElementById('macro-kcal') as HTMLInputElement).value);
+    const vekt = parseFloat((document.getElementById('macro-vekt') as HTMLInputElement).value);
+    const mal = (document.getElementById('macro-mal') as HTMLSelectElement).value;
+
+    if (isNaN(kcal) || isNaN(vekt) || kcal <= 0 || vekt <= 0) return;
+
+    const proteinG = Math.round(vekt * proteinPerKg[mal]!);
+    const proteinKcal = proteinG * 4;
+
+    const fatKcal = Math.round(kcal * fatFraction[mal]!);
+    const fatG = Math.round(fatKcal / 9);
+
+    const carbKcal = Math.max(0, kcal - proteinKcal - fatKcal);
+    const carbG = Math.round(carbKcal / 4);
+
+    const proteinPct = Math.round((proteinKcal / kcal) * 100);
+    const fatPct = Math.round((fatKcal / kcal) * 100);
+    const carbPct = Math.round((carbKcal / kcal) * 100);
+
+    document.getElementById('protein-g')!.textContent = `${proteinG} g`;
+    document.getElementById('fat-g')!.textContent = `${fatG} g`;
+    document.getElementById('carb-g')!.textContent = `${carbG} g`;
+
+    document.getElementById('protein-pct')!.textContent = `${proteinKcal} kcal · ${proteinPct}%`;
+    document.getElementById('fat-pct')!.textContent = `${fatKcal} kcal · ${fatPct}%`;
+    document.getElementById('carb-pct')!.textContent = `${carbKcal} kcal · ${carbPct}%`;
+
+    setBar('protein-bar', proteinPct);
+    setBar('fat-bar', fatPct);
+    setBar('carb-bar', carbPct);
+
+    result.classList.remove('hidden');
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>

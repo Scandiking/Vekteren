@@ -1,0 +1,31 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 mt-auto">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+
+      <div>
+        <span class="text-xl font-extrabold text-orange-500">Vekteren</span>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 max-w-xs">
+          Vektnedgang som faktisk fungerer – ingen mirakelkurer, bare vitenskap og tålmodighet.
+        </p>
+      </div>
+
+      <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <a href="/fremgang" class="text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors">Min fremgang</a>
+        <a href="/kalorier" class="text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors">Kalorier</a>
+        <a href="/mat" class="text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors">Mat</a>
+        <a href="/trening" class="text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors">Trening</a>
+        <a href="/kalkulatorer" class="text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors">Kalkulatorer</a>
+        <a href="/artikler" class="text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors">Artikler</a>
+      </nav>
+
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800 text-xs text-gray-400 dark:text-gray-500">
+      © {year} Kris · Ikke medisinsk rådgivning. Konsulter lege ved behov.
+    </div>
+  </div>
+</footer>

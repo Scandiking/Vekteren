@@ -1,0 +1,149 @@
+---
+// Weight chart island — reads /public/data/weight-data.csv client-side
+// CSV must have columns: Dato (date), Vekt (weight in kg)
+// Extra columns are ignored. Both comma and semicolon delimiters are supported.
+---
+
+<div class="relative w-full">
+  <div id="chart-loading" class="flex items-center justify-center h-72 gap-3 text-gray-400">
+    <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+    </svg>
+    Laster vektdata…
+  </div>
+
+  <div id="chart-error" class="hidden flex items-center justify-center h-72 text-gray-400 text-sm">
+    Fant ingen vektdata. Legg filen <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded">weight-data.csv</code> i <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded">public/data/</code>.
+  </div>
+
+  <div id="chart-wrap" class="hidden">
+    <canvas id="weightChart"></canvas>
+  </div>
+</div>
+
+<script>
+  import Chart from 'chart.js/auto';
+
+  function rollingAverage(data: number[], window: number): number[] {
+    return data.map((_, i) => {
+      const start = Math.max(0, i - window + 1);
+      const slice = data.slice(start, i + 1);
+      return slice.reduce((a, b) => a + b, 0) / slice.length;
+    });
+  }
+
+  async function initChart() {
+    try {
+      const res = await fetch('/data/weight-data.csv');
+      if (!res.ok) throw new Error('fetch failed');
+      const text = await res.text();
+
+      const lines = text.trim().split('\n').filter(l => l.trim());
+      if (lines.length < 2) throw new Error('no data');
+
+      const delim = lines[0].includes(';') ? ';' : ',';
+      const dataLines = lines.slice(1); // skip header
+
+      const dates: string[] = [];
+      const weights: number[] = [];
+
+      for (const line of dataLines) {
+        const cols = line.split(delim);
+        if (cols.length < 2) continue;
+        const date = cols[0]?.trim().replace(/"/g, '') ?? '';
+        const raw = cols[1]?.trim().replace(/"/g, '').replace(',', '.') ?? '';
+        const w = parseFloat(raw);
+        if (date && !isNaN(w)) {
+          dates.push(date);
+          weights.push(w);
+        }
+      }
+
+      if (dates.length === 0) throw new Error('no valid rows');
+
+      const avg7 = rollingAverage(weights, 7);
+
+      document.getElementById('chart-loading')?.classList.add('hidden');
+      document.getElementById('chart-wrap')?.classList.remove('hidden');
+
+      const canvas = document.getElementById('weightChart') as HTMLCanvasElement;
+      const isDark = document.documentElement.classList.contains('dark');
+      const grid = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)';
+      const tick = isDark ? '#9ca3af' : '#6b7280';
+
+      new Chart(canvas, {
+        type: 'line',
+        data: {
+          labels: dates,
+          datasets: [
+            {
+              label: 'Daglig vekt (kg)',
+              data: weights,
+              borderColor: 'rgba(249,115,22,0.35)',
+              backgroundColor: 'transparent',
+              pointRadius: 2,
+              pointHoverRadius: 5,
+              borderWidth: 1.5,
+              tension: 0.2,
+              order: 2,
+            },
+            {
+              label: '7-dagers snitt (kg)',
+              data: avg7,
+              borderColor: '#f97316',
+              backgroundColor: 'rgba(249,115,22,0.08)',
+              fill: true,
+              pointRadius: 0,
+              pointHoverRadius: 4,
+              borderWidth: 2.5,
+              tension: 0.4,
+              order: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              labels: {
+                color: tick,
+                font: { family: 'Inter, system-ui, sans-serif', size: 12 },
+                boxWidth: 12,
+              },
+            },
+            tooltip: {
+              callbacks: {
+                label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)} kg`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: tick,
+                maxTicksLimit: 12,
+                font: { family: 'Inter, system-ui, sans-serif', size: 11 },
+              },
+              grid: { color: grid },
+            },
+            y: {
+              ticks: {
+                color: tick,
+                callback: v => `${v} kg`,
+                font: { family: 'Inter, system-ui, sans-serif', size: 11 },
+              },
+              grid: { color: grid },
+            },
+          },
+        },
+      });
+    } catch {
+      document.getElementById('chart-loading')?.classList.add('hidden');
+      document.getElementById('chart-error')?.classList.remove('hidden');
+    }
+  }
+
+  initChart();
+</script>
