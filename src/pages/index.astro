@@ -12,22 +12,22 @@ const prinsipper = [
   {
     icon: '⚖️',
     title: 'Kalorier er nøkkelen',
-    body: 'Kroppen er en motor. Gir du den mer energi enn den bruker, lagrer den resten som fett. Et kaloriunderskudd er det eneste som gir varig vektnedgang – uten unntak.',
+    body: 'Kroppen er en motor. Gir du den mer energi enn den bruker, lagrer den resten som fett. Et kaloriunderskudd er det eneste som gir varig vektnedgang – uten unntak. Kroppen trenger kalorier, men hva de kaloriene består av er nøkkelen til å endre livsstil.',
   },
   {
     icon: '🐢',
     title: 'Langsomhet vinner',
-    body: '0,5–1 kg per uke er ikke sakte – det er bærekraftig. Raske kurer gir raske resultater og rask tilbakegang. Tålmodighet er det viktigste verktøyet ditt.',
+    body: '0,2 – 0,5 kg per uke er ikke sakte. Det er bærekraftig. Raske kurer gir raske resultater OG rask tilbakegang. Tålmodighet er det viktigste verktøyet ditt. Du skal tross alt motarbeide kroppens overlevelsesinstinkt, som vil gjøre alt for å beholde fettet.',
   },
   {
     icon: '🥑',
     title: 'Fett er ikke fienden',
-    body: 'Fett er et essensielt næringsstoff kroppen din trenger. Det du bør begrense er ultraprosessert mat – stripset for næring og designet for å gjøre deg sulten.',
+    body: 'Fett er et essensielt næringsstoff kroppen din trenger. Det metter godt, og det gjør maten god. Å kutte fett for å spare kalorier er en felle mange går i. Det er mye smartere å kutte raffinerte karbohydrater og sukker, og heller spise mer av det som faktisk metter og nærer kroppen – som fett, fiber og protein.',
   },
   {
     icon: '🏃',
     title: 'Beveg deg – men riktig grunn',
-    body: 'Trening er fantastisk for helsen, humøret og muskelmassen. Men den driver ikke vektnedgang alene. Kjøkkenet er der jobben gjøres.',
+    body: 'Trening er fantastisk for helsen, humøret og muskelmassen. Men den driver ikke vektnedgang alene. Kjøkkenet er der den største jobben gjøres. Men ved å trene de store muskelgruppene, og prioritere styrketrening, kan du hjelpe kroppen å beholde muskelmasse mens den mister fett – og det gjør at du ser bedre ut, føler deg sterkere, og unngår det klassiske "skinny fat"-problemet.',
   },
 ];
 ---
@@ -40,7 +40,7 @@ const prinsipper = [
       <div class="max-w-3xl animate-slide-up">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400 text-sm font-medium mb-6">
           <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-          Ingen mirakelkurer her
+          Ingen mirakelkurer, slankepiller eller salg av abbonement her
         </div>
 
         <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 dark:text-white leading-none mb-6">
@@ -50,8 +50,8 @@ const prinsipper = [
         </h1>
 
         <p class="text-xl text-gray-500 dark:text-gray-400 mb-8 max-w-xl leading-relaxed">
-          Ingen sulting, ingen kurer, ingen mirakler. Bare et solid kaloriunderskudd,
-          tålmodighet, og kunnskap om hva du faktisk spiser.
+          Slanking? Gjør det enkelt. Ingen sulting, ingen kurer, ingen mirakler. Bare et solid kaloriunderskudd,
+          tålmodighet, og kunnskap om hva du faktisk spiser. Jeg har vært der, og jeg har lært det på den harde måten – nå deler jeg alt jeg vet, og alt jeg har erfart.
         </p>
 
         <div class="flex flex-wrap gap-4">
@@ -73,7 +73,7 @@ const prinsipper = [
   <section class="bg-gray-50 dark:bg-gray-900">
     <div class="section-wrap">
       <h2 class="section-title">Fire prinsipper</h2>
-      <p class="section-sub">Alt du trenger å vite kan oppsummeres i fire punkter. Det betyr ikke at det er lett – men det er enkelt.</p>
+      <p class="section-sub">Alt du trenger å vite kan egentlig oppsummeres i fire punkter. Det betyr ikke at det er lett, men det er enkelt å sette seg inn i og forholde seg til.</p>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {prinsipper.map(p => (
@@ -92,14 +92,14 @@ const prinsipper = [
     <div class="section-wrap">
       <div class="max-w-3xl">
         <div class="inline-block text-xs uppercase tracking-widest font-semibold text-orange-500 mb-3">Om Kris</div>
-        <h2 class="section-title">Jeg er ikke ekspert. Jeg er beviset.</h2>
+        <h2 class="section-title">Jeg er ikke ekspert. Hvorfor høre på meg?</h2>
         <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
           Jeg heter Kris, og dette nettstedet er ikke skrevet av en ernæringsfysiolog eller personlig trener.
-          Det er skrevet av en vanlig person som faktisk gikk ned {totalLoss > 0 ? `${totalLoss} kg` : 'mye'} – sakte, bærekraftig, og uten å ofre matgleden.
+          Det er skrevet av en vanlig person som faktisk gikk ned {totalLoss > 0 ? `${totalLoss} kg` : 'mye'} – sakte, bærekraftig, og uten å ofre matgleden. 
         </p>
         <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
           Det jeg skriver her er basert på det som faktisk fungerte for meg, supplert med det vitenskapen sier.
-          Ingenting er hokuspokus. Ingen supplementreklame. Ingen kurer å kjøpe.
+          Ingenting er hokuspokus. Ingen supplementreklame. Ingen kurer å kjøpe. På videregående etter å ha begynt å drikke Coca-Cola på ettermiddagen når jeg skulle locke inn på matematikk startet min reise mot å bli overvektig. Det snek seg gradvis på, og jeg prøvde runder med økt trening og dietter. Mange runder. Vet du hva det kalles? Jojo-slanking. Dette er ikke en fase med en diett du går igjennom og når du har nådd målet så går du tilbake til samme kosthold. Det er en livsstil-endring. Og da kan man ikke gjøre store endringer på en gang, det er ikke bærekraftig. Det handler om å gjøre små, smarte valg hver dag, og å være tålmodig nok til å la kroppen tilpasse seg og endre seg over tid.
         </p>
         <a href="/fremgang" class="btn-primary">
           Se reisen min
