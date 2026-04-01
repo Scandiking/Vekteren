@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { siteConfig, totalLoss } from '../config';
+import { totalLoss } from '../config';
 
 const alleArtikler = await getCollection('artikler');
 const sisteArtikler = alleArtikler

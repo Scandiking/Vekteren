@@ -115,7 +115,7 @@
             },
             tooltip: {
               callbacks: {
-                label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)} kg`,
+                label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(1) ?? '–'} kg`,
               },
             },
           },
