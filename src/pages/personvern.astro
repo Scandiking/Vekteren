@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Personvernerklæring"
+  description="Personvernerklæring for Vekteren – informasjon om hvilke data vi samler inn og hvordan de brukes."
+>
+  <main class="max-w-2xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-2">Personvernerklæring</h1>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mb-10">Sist oppdatert: april 2025</p>
+
+    <div class="prose dark:prose-invert max-w-none space-y-8">
+
+      <section>
+        <h2>Om nettstedet</h2>
+        <p>
+          Vekteren (<a href="https://vekteren.vercel.app">vekteren.vercel.app</a>) er et norsk
+          informasjonssted om vektnedgang. Nettstedet drives som et personlig prosjekt uten
+          kommersiell virksomhet knyttet til innsamling eller salg av persondata.
+        </p>
+      </section>
+
+      <section>
+        <h2>Data vi samler inn</h2>
+        <p>Vekteren samler ikke inn personopplysninger direkte. Vi har ingen innlogging, ingen kommentarfunksjon og ingen kontaktskjemaer som lagrer data.</p>
+        <p>Følgende tredjepartstjenester kan samle inn data ved besøk på nettstedet:</p>
+
+        <h3>Google AdSense</h3>
+        <p>
+          Vi bruker Google AdSense for å vise annonser. Google kan bruke informasjonskapsler
+          (cookies) til å vise annonser basert på tidligere besøk på dette eller andre nettsteder.
+          Du kan velge bort personaliserte annonser via
+          <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Googles annonseinnstillinger</a>.
+        </p>
+        <p>
+          Google AdSense bruker DoubleClick-cookien til å vise mer relevante annonser. Les mer om
+          hvordan Google bruker informasjon fra partnersider i
+          <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Googles retningslinjer</a>.
+        </p>
+
+        <h3>Vercel (hosting)</h3>
+        <p>
+          Nettstedet er hostet på Vercel. Vercel kan samle inn anonymiserte trafikkdata (IP-adresse,
+          nettlesertype, besøkstidspunkt) som en del av sin hostingtjeneste. Les
+          <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercels personvernpolicy</a>
+          for detaljer.
+        </p>
+      </section>
+
+      <section>
+        <h2>Informasjonskapsler (cookies)</h2>
+        <p>
+          Vekteren setter ingen egne cookies. Fargetemavalget ditt (lyst/mørkt) lagres i
+          nettleserens <code>localStorage</code> – dette forlater aldri nettleseren din og
+          sendes ikke til noen server.
+        </p>
+        <p>
+          Google AdSense kan sette egne tredjeparts-cookies i nettleseren din for
+          annonseformål, som beskrevet over.
+        </p>
+        <p>
+          Du kan når som helst slette localStorage og cookies i nettleserinnstillingene dine.
+        </p>
+      </section>
+
+      <section>
+        <h2>Dine rettigheter</h2>
+        <p>
+          I henhold til GDPR har du rett til innsyn i, retting av og sletting av
+          personopplysninger vi eventuelt har om deg. Siden Vekteren ikke samler inn
+          personopplysninger direkte, er det i praksis ingen slike data å be om.
+        </p>
+        <p>
+          For data samlet inn av Google, se
+          <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener">Googles personvernsenter</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>Lenker til eksterne nettsteder</h2>
+        <p>
+          Artiklene på Vekteren inneholder lenker til eksterne kilder (vitenskapelige tidsskrifter
+          og lignende). Vekteren er ikke ansvarlig for personvernpraksisen til disse nettstedene.
+        </p>
+      </section>
+
+      <section>
+        <h2>Kontakt</h2>
+        <p>
+          Spørsmål om personvern kan rettes til nettstedets eier via GitHub-siden for prosjektet.
+        </p>
+      </section>
+
+    </div>
+  </main>
+</BaseLayout>
