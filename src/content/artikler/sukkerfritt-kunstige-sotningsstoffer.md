@@ -1,11 +1,11 @@
 ---
 title: "Sukkerfritt – bedre eller bare annerledes?"
-description: "Aspartam og acesulfam K markedsføres som sunne alternativer til sukker. Men forskning tyder på at kunstige søtningsmidler forstyrrer tarmfloraen, forvirrer kroppens sultregulering og kan øke – ikke redusere – inntaket over tid."
+description: "Aspartam og acesulfam K markedsføres som sunne alternativer til sukker. Men forskning tyder på at kunstige søtningsmidler forstyrrer tarmfloraen, forvirrer kroppens sultregulering og kan øke inntaket over tid."
 publishDate: 2026-04-05
 tags: ["sukker", "brus", "energidrikk", "søtningsmidler", "ultraprosessert"]
 ---
 
-«Sukkerfritt» høres enkelt ut: fjern sukkeret, behold smaken, unngå kaloriene. I teorien er det en god idé. I praksis er bildet mer komplisert – og for mange er det faktisk et argument for å velge vanlig sukker i stedet.
+«Sukkerfritt» høres enkelt ut: fjern sukkeret, behold smaken, unngå kaloriene. I teorien er det en god idé. I praksis er bildet mer komplisert. For mange er det faktisk et argument for å velge vanlig sukker i stedet.
 
 Det er ikke at sukker er bra. Det er at kunstige søtningsmidler løser færre problemer enn de lover, og skaper noen nye.
 
@@ -13,9 +13,9 @@ Det er ikke at sukker er bra. Det er at kunstige søtningsmidler løser færre p
 
 ## Hva er aspartam og acesulfam K?
 
-De to vanligste kunstige søtningsmidlene i brus og energidrikk er **aspartam** (E951) og **acesulfam K** (E950). De brukes gjerne i kombinasjon fordi de utfyller hverandres smaksprofiler – acesulfam K slår inn raskt, aspartam varer lenger.
+De to vanligste kunstige søtningsmidlene i brus og energidrikk er **aspartam** (E951) og **acesulfam K** (E950). De brukes gjerne i kombinasjon fordi de utfyller hverandres smaksprofiler. Acesulfam K slår inn raskt, mens aspartam varer lenger.
 
-**Aspartam** er omtrent 200 ganger søtere enn sukker. I kroppen brytes det ned til fenylalanin, asparaginsyre og metanol. Det er godkjent av Mattilsynet og EFSA, men i juli 2023 klassifiserte WHOs kreftforskningsorgan IARC aspartam som «mulig kreftfremkallende hos mennesker» (gruppe 2B) – samme kategori som rødfarget kjøtt og kaffe.¹ JECFA (WHOs ekspertkomité for mattilsetningsstoffer) opprettholdt samtidig det akseptable dagsinntaket på 40 mg/kg kroppsvekt, og konkluderte med at bevisene ikke er sterke nok til å anbefale konsumenter å endre atferd. Men klassifiseringen illustrerer at vi ikke har full oversikt over langtidseffektene.
+**Aspartam** er omtrent 200 ganger søtere enn sukker. I kroppen brytes det ned til fenylalanin, asparaginsyre og metanol. Det er godkjent av Mattilsynet og EFSA, men i juli 2023 klassifiserte WHOs kreftforskningsorgan IARC aspartam som «mulig kreftfremkallende hos mennesker» (gruppe 2B) – samme kategori som rødfarget kjøtt og kaffe.¹ JECFA (WHOs ekspertkomité for mattilsetningsstoffer) opprettholdt samtidig det akseptable dagsinntaket på 40 mg/kg kroppsvekt, og konkluderte med at bevisene ikke er sterke nok til å anbefale oss å endre atferd. Men klassifiseringen illustrerer at vi ikke har full oversikt over langtidseffektene.
 
 **Acesulfam K** er rundt 200 ganger søtere enn sukker, passerer gjennom kroppen uten å bli metabolisert, og skilles ut uendret i urinen. Det regnes som trygt i godkjente mengder, men langtidsstudier på mennesker er begrensede.²
 
@@ -23,37 +23,37 @@ De to vanligste kunstige søtningsmidlene i brus og energidrikk er **aspartam** 
 
 ## Tarmfloraen liker det ikke
 
-En av de mest siterte studiene på kunstige søtningsmidler ble publisert i *Nature* i 2014 av Suez og kolleger ved Weizmann Institute of Science i Israel.³ De fant at ikke-kaloriske søtningsmidler – inkludert sakarin, sukralose og aspartam – induserte glukoseintoleranse hos mus ved å endre sammensetningen av tarmfloraen. Da de transplanterte tarmfloraen fra søtningsstoff-eksponerte mus til sterile mus, overførte de også glukoseintoleransen.
+En av de mest siterte studiene på kunstige søtningsmidler ble publisert i *Nature* i 2014 av Suez og kolleger ved Weizmann Institute of Science i Israel.³ De fant at ikke-kaloriske søtningsmidler, som sakkarin, sukralose og aspartam, induserte glukoseintoleranse hos mus ved å endre sammensetningen av tarmfloraen. Da de transplanterte tarmfloraen fra søtningsstoff-eksponerte mus til sterile mus, overførte de også glukoseintoleransen.
 
-I den humane delen av studien fikk friske frivillige sakarin i en uke. Hos et flertall av deltakerne endret tarmfloraen seg og glukoseresponsen forverret seg – et mønster som ligner tidlige tegn på metabolsk forstyrrelse.
+I den humane delen av studien fikk friske frivillige sakkarin i en uke. Hos et flertall av deltakerne endret tarmfloraen seg og glukoseresponsen forverret seg. Dette er et mønster som ligner tidlige tegn på metabolsk forstyrrelse.
 
-Én studie beviser ikke alt. Men den peker mot en mekanisme som er biologisk plausibel og klinisk relevant: kunstige søtningsmidler er ikke inerte stoffer. De interagerer med mikrobiomets bakterier, og mikrobiomets tilstand er nært knyttet til metabolisme og vekt.
+Én studie beviser ikke alt. Men den peker mot en mekanisme som er biologisk plausibel og klinisk relevant: kunstige søtningsmidler er ikke inerte stoffer. De interagerer med mikrobiomens bakterier, og mikrobiomens tilstand er nært knyttet til forbrenning og vekt.
 
 ---
 
 ## Kroppen lar seg ikke lure like lett som du tror
 
-Når du smaker noe søtt, forbereder kroppen seg på sukker. Det skjer en rekke fysiologiske responser – kjent som den **cefalfase-metabolske responsen** – der blant annet insulinutskillelse starter i forkant av faktisk glukoseopptak.⁴ Det er kroppens måte å gjøre seg klar.
+Når du smaker noe søtt, forbereder kroppen seg på sukker. Det skjer en rekke fysiologiske responser, kjent som den **cefalfase-metabolske responsen**, der blant annet insulinutskillelse starter i forkant av faktisk glukoseopptak.⁴ Det er kroppens måte å gjøre seg klar.
 
-Problemet er at denne responsen aktiveres av søtsmak, ikke av sukker spesifikt. Kunstig søtning trigger altså responsen – men sukkerinnstrømmingen uteblir. Over tid kan dette svekke koblingen mellom søtsmak og kalorier, slik at kroppen blir dårligere til å regulere energiinntaket basert på smakssignaler.⁵
+Problemet er at denne responsen aktiveres av _søtsmak_, ikke av sukker spesifikt. Kunstig søtning trigger altså responsen, men sukkerinnstrømmingen uteblir. Over tid kan dette svekke koblingen mellom søtsmak og kalorier, slik at kroppen blir dårligere til å regulere energiinntaket basert på smakssignaler.⁵
 
-Susan Swithers ved Purdue University har forsket mye på dette. Hennes oppsummering fra 2013 i *Trends in Endocrinology & Metabolism* er direkte: kunstige søtningsmidler produserer den kontraintuitive effekten at de fremmer – ikke motvirker – metabolske forstyrrelser hos en del forbrukere.⁵ Effekten ser ut til å avhenge av tidligere eksponering for søtsmak og individuelle variasjoner i mikrobiom og metabolisme.
+Susan Swithers ved Purdue University har forsket mye på dette. Hennes oppsummering fra 2013 i *Trends in Endocrinology & Metabolism* er direkte: kunstige søtningsmidler produserer den kontraintuitive effekten at de fremmer metabolske forstyrrelser hos en del forbrukere.⁵ Effekten ser ut til å avhenge av tidligere eksponering for søtsmak og individuelle variasjoner i mikrobiom og metabolisme.
 
 ---
 
 ## Kompensasjonseffekten: «Jeg sparte jo kalorier»
 
-Det er godt dokumentert at folk kompenserer for «spart» energi andre steder.⁶ Et glass Pepsi Max til lunsj gir psykologisk rom for noe ekstra etterpå. Ikke fordi du er svak – men fordi hjernen bokfører transaksjonen og justerer motivasjonen deretter.
+Det er godt dokumentert at folk kompenserer for «spart» energi andre steder.⁶ Et glass Pepsi Max til lunsj gir psykologisk rom for noe ekstra etterpå. Ikke fordi du er svak, men fordi hjernen bokfører transaksjonen og justerer motivasjonen deretter.
 
-I tillegg øker søt smak – uavhengig av kaloriinnhold – lysten på søt mat generelt. Jo mer søt smak du eksponerer deg for, jo høyere kalibrerer du toleransen din. Sukkerfritt brus holder smakspreferansen for ekstremt søte drikker i live, og gjør det vanskeligere å finne vann og usøtet kaffe tilfredsstillende.
+I tillegg øker søt smak, uavhengig av kaloriinnhold, lysten på søt mat generelt. Jo mer søt smak du eksponerer deg for, jo høyere kalibrerer du toleransen din. Sukkerfritt brus holder smakspreferansen for ekstremt søte drikker i live, og gjør det vanskeligere å finne vann og usøtet kaffe tilfredsstillende.
 
 ---
 
 ## Hva Marit Kolby sier
 
-Marit Kolby, sykepleier og forfatter av *Sukkerdetox* (2014), har vært en tydelig stemme i den norske debatten om kunstige søtningsmidler.⁷ Kolby argumenterer for at «sukkerfritt»-merket er villedende: det fjerner kaloriene, men beholder – og forsterker – søtsmaksavhengigheten. I hennes perspektiv er kunstige søtningsmidler ikke et steg bort fra sukkerproblemet, men en forlengelse av det. Kroppen lærer aldri å fungere uten ekstrem søthet som bakteppe.
+Marit Kolby, sykepleier og forfatter av *Sukkerdetox* (2014), har vært en tydelig stemme i den norske debatten om kunstige søtningsmidler.⁷ Kolby argumenterer for at «sukkerfritt»-merket er villedende: det fjerner kaloriene, men beholder, og forsterker, søtsmaksavhengigheten. 
 
-Kolby er ikke akademiker, og *Sukkerdetox* er en populærvitenskapelig bok rettet mot forbrukere. Men poengene hennes speiler det som fremkommer i forskning om smakstoleranseheving og kompensasjonsatferd – og hun setter ord på noe mange gjenkjenner fra eget forbruksmønster.
+I hennes perspektiv er kunstige søtningsmidler ikke et steg bort fra sukkerproblemet, men en forlengelse av det. Kroppen lærer aldri å fungere uten ekstrem søthet som bakteppe. Poengene hennes speiler det som fremkommer i forskning om smakstoleranseheving og kompensasjonsatferd, og hun setter ord på noe mange gjenkjenner fra eget forbruksmønster.
 
 ---
 
@@ -63,29 +63,29 @@ Brus og energidrikk er ikke tilfeldige produkter. De er nøye ingeniørmessig ut
 
 ### Bliss point – den nøyaktige søtheten
 
-Howard Moskowitz, en matforsker som har jobbet for blant annet Pepsi og Campbell's, populariserte begrepet «bliss point»: det nøyaktige nivået av sukker (eller søtningsmiddel), salt og fett som maksimerer palatabilitet – ikke nødvendigvis det søteste, men det som gjør at du *ikke slutter å drikke*.⁸ Energidrikkers søthetsnivå er ikke tilfeldig – det er det punktet laboratorietester viser at forbrukere drikker mest av.
+Howard Moskowitz, en matforsker som har jobbet for blant annet Pepsi og Campbell's, populariserte begrepet «bliss point»: det nøyaktige nivået av sukker (eller søtningsmiddel), salt og fett som maksimerer palatabilitet (velsmakenhet), ikke nødvendigvis det søteste, men det som gjør at du *ikke slutter å drikke*.⁸ Energidrikkers søthetsnivå er ikke tilfeldig, det er det punktet laboratorietester viser at forbrukere drikker mest av.
 
 ### Lydsignaturen
 
-Lyden av å åpne en bruseboks – *klikket*, *suset* og *brusen* – er ikke et biprodukt av emballasjedesign. Den er del av produktopplevelsen. Forsker Charles Spence ved Oxford University har vist at multimodale sanseopplevelser – lyd, lukt, farge, tekstur – direkte påvirker smaksopplevelsen og forventningen om belønning.⁹ Coca-Cola har i årevis jobbet med lyddesign på emballasje som del av merkevarestrategien. Klikket er en betinget stimulus: kroppen kobler lyden til belønning og setter i gang fysiologiske forberedelsesresponser – akkurat som Pavlovs hunder.
+Lyden av å åpne en bruseboks – *klikket*, *suset* og *brusen* – er ikke et biprodukt av emballasjedesign. Den er del av produktopplevelsen. Forsker Charles Spence ved Oxford University har vist at multimodale sanseopplevelser som lyd, lukt, farge, tekstur, direkte påvirker smaksopplevelsen og forventningen om belønning.⁹ Coca-Cola har i årevis jobbet med lyddesign på emballasje som del av merkevarestrategien. Klikket er en betinget stimulus: kroppen kobler lyden til belønning og setter i gang fysiologiske forberedelsesresponser – akkurat som Pavlovs hunder. "Godlyd'n".
 
 ### Farge og fizziness
 
-Fargen på brus er kunstig og kalibrert for forventet smak: rød assosieres med sødme og kraft, gul med friskhet og syre. Karboniseringen – boblene – er ikke bare for smakens skyld. Forskning viser at karbonering øker frigjøringen av CO₂ i munnen, som stimulerer smertereceptorer og gir en lett «rus»-følelse som forsterker drikkelysten.¹⁰
+Fargen på brus er kunstig og kalibrert for forventet smak: rød assosieres med sødme og kraft, gul med friskhet og syre. Kullsyren er ikke bare for smakens skyld. Forskning viser at karbonering øker frigjøringen av CO₂ i munnen, som stimulerer smertereseptorer og gir en lett «rus»-følelse som forsterker drikkelysten.¹⁰
 
 ### «Wanting» vs «liking»
 
-Kent Berridge ved University of Michigan har skilt mellom to separate nevrologiske systemer: **liking** (hedonisk tilfredsstillelse av selve smaken) og **wanting** (motivasjonsdriften til å søke produktet igjen).¹¹ Kunstige søtningsmidler kan vedlikeholde eller forsterke *wanting*-systemet uten å gi den fullstendige tilfredsstillelsen som *liking* krever – siden kalorisignalet uteblir. Resultatet er at du kan drikke mer uten å bli «ferdig» på samme måte som med sukkerholdig brus.
+Kent Berridge ved University of Michigan har skilt mellom to separate nevrologiske systemer: **liking** (hedonisk tilfredsstillelse av selve smaken) og **wanting** (motivasjonsdriften til å søke produktet igjen).¹¹ Kunstige søtningsmidler kan vedlikeholde eller forsterke *wanting*-systemet uten å gi den fullstendige tilfredsstillelsen som *liking* krever siden kalorisignalet uteblir. Resultatet er at du kan drikke mer uten å bli «ferdig» på samme måte som med sukkerholdig brus.
 
 ---
 
 ## Så hva bør du velge?
 
-Hverken. Idealet er å redusere ekstremt søte drikker totalt – og la smakspreferansen kalibrere seg ned mot vann, te og kaffe uten sukker over tid.
+Det vet du. Ingen av delene. Idealet er å redusere ekstremt søte drikker totalt, og la smakspreferansen kalibrere seg ned mot vann, te og kaffe uten sukker over tid.
 
-Men hvis valget *faktisk* står mellom en vanlig Cola og en Cola Zero: det er ikke opplagt at nullvarianten er det bedre valget. Den vanlige Cola-en inneholder kalorier du forhåpentligvis registrerer og justerer for. Den gir en fullstendig metabolsk respons. Den holder ikke søtsmaksterskelen kunstig høy uten kaloridekning. Og den inneholder ikke stoffer som potensielt forstyrrer tarmfloraen.
+Men hvis valget *faktisk* står mellom en vanlig Cola og en Cola Zero så er det ikke opplagt at nullvarianten er det bedre valget. Den vanlige Cola-en inneholder kalorier du forhåpentligvis registrerer og justerer for. Den gir en fullstendig metabolsk respons. Den holder ikke søtsmaksterskelen kunstig høy uten kaloridekning. Og den inneholder ikke stoffer som potensielt forstyrrer tarmfloraen.
 
-Det er et argument for å heller drikke én vanlig brus av og til enn å drikke sukkerfri brus daglig i troen på at det er et fritt valg.
+Det er et argument for å heller drikke én vanlig brus *av og til* enn å drikke sukkerfri brus daglig i troen på at det er et fritt valg.
 
 ---
 

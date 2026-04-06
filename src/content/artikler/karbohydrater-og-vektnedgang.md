@@ -18,7 +18,7 @@ Karbohydrater er organiske molekyler bygget av karbon, hydrogen og oksygen. De d
 - Disakkarider – sukrose (bordsukker = glukose + fruktose), laktose (melkesukker = glukose + galaktose), maltose.
 
 **Komplekse karbohydrater:**
-- Stivelse – lange kjeder av glukose (amylose og amylopektin). Finnes i korn, poteter, ris, belgvekster. Brytes ned til glukose i fordøyelsen.
+- Stivelse – lange kjeder av glukose (amylose og amylopektin). Finnes i korn, poteter, ris og belgvekster. Brytes ned til glukose i fordøyelsen.
 - Fiber – karbohydratkjeder kroppen *ikke* kan bryte ned. Passerer tynntarmen intakt og fermenteres delvis av bakterier i tykktarmen.
 
 Det er fristende å si at enkle karbohydrater er «dårlige» og komplekse er «gode», men det er en grov forenkling. Fruktose fra et eple og fruktose fra brus er samme molekyl – men matriksen rundt, fiberinnholdet og inntakshastigheten gjør dem til svært ulike næringssituasjoner i praksis.
@@ -59,7 +59,7 @@ For å forstå hvorfor GI og GL har praktisk relevans, er det nyttig å forstå 
 
 Når karbohydrater brytes ned og glukose absorberes i blodet, stiger blodsukkeret. Bukspyttkjertelen svarer med å skille ut **insulin** – hormonet som åpner cellenes glukoseopptak. Glukose tas opp i lever, muskler og fettvev. I lever og muskler lagres det som **glykogen** (kort- til mellomlang lagringsform for energi). Glykogenlagrene er imidlertid begrenset – omtrent 100 g i lever og 400 g i muskler for en gjennomsnittsperson.³ Overskytende glukose utover det som glykogenlagrene kan romme, omdannes til fett gjennom *de novo lipogenese* og lagres i fettvevet.
 
-**Insulin er et anabolsk hormon** – det fremmer lagring og hemmer nedbrytning. Høye insulinnivåer hemmer fettforbrenning (*lipolyse*) direkte. Dette er ikke problematisk i seg selv; insulinresponsen er normal og nødvendig. Problemet oppstår dersom insulinnivåene er kronisk forhøyde – noe som skjer ved hyppige inntak av høy-GI karbohydrater gjennom dagen, spesielt kombinert med inaktivitet og overfylte glykogenlagre.
+**Insulin er et anabolsk hormon** – det fremmer lagring og hemmer nedbrytning. Høye insulinnivåer hemmer fettforbrenning (*lipolyse*) direkte. Dette er ikke problematisk i seg selv; insulinresponsen er normal og nødvendig. Problemet oppstår dersom insulinnivåene er kronisk forhøyde – noe som skjer ved hyppige inntak av karbohydrater med høy glykemisk indeks gjennom dagen, spesielt kombinert med inaktivitet og overfylte glykogenlagre.
 
 Matvarer med lav GI og høyt fiberinnhold gir langsommere glukoseopptak, lavere insulintopp og en mer gradvis normalisering av blodsukkeret. Det gir i praksis **lengre metthetsfølelse** og **mer stabile energinivåer** mellom måltider.⁴
 
@@ -67,7 +67,7 @@ Matvarer med lav GI og høyt fiberinnhold gir langsommere glukoseopptak, lavere 
 
 Fiber er teknisk sett en undergruppe av karbohydrater, men oppfører seg fundamentalt annerledes enn stivelse og sukker. Det finnes to typer:
 
-**Løselig fiber** løses opp i vann og danner en gelatinøs masse i fordøyelsessystemet. Det bremser magetømning og glukoseabsorpsjon, senker kolesterol og metter godt. Gode kilder: havregryn (betaglukan), epler, pærer, belgvekster, psylliumfrø.
+**Løselig fiber** løses opp i vann og danner en gelatinaktig masse i fordøyelsessystemet. Det bremser magetømning og glukoseabsorpsjon, senker kolesterol og metter godt. Gode kilder: havregryn (betaglukan), epler, pærer, belgvekster, psylliumfrø.
 
 **Uløselig fiber** løses ikke opp, men absorberer vann og øker avføringens volum. Det fremskynder tarmpassasjen og støtter tarmfunksjon. Gode kilder: fullkornshvete, grønnsaker, nøtteskall.
 
@@ -92,20 +92,20 @@ En nyttig tommelfingerregel er å tenke på karbohydrater langs to akser: **fibe
 **Minst prosesserte, høy fiber – de beste hverdagskildene:**
 - **Havregryn** – lav GI, høyt betaglukan-innhold, god metthet. 100 g tørr havregryn gir ~10 g fiber og ~350 kcal.
 - **Linser og kikerter** – lav GL, mye fiber og protein i kombinasjon. En av de mest mettende karbohydratkildene per kalori som finnes.
-- **Fullkornsbrød (ekte)** – høyere fiberinnhold enn lyst brød, lavere GI. Sjekk at «fullkorn» faktisk er første ingrediens.
+- **Fullkornsbrød (ekte)** – høyere fiberinnhold enn lyst brød, lavere GI. Sjekk at «fullkorn» faktisk er første ingrediens. Brødskalaen er mest tull.
 - **Søtpotet** – moderat GI, mye fiber og næringsstoffer (betakaroten, kalium). Bedre enn vanlig potet.
-- **Grønnsaker** – de mest kalorimessig fordelaktige karbohydratkildene. Broccoli, kål, spinat, paprika gir mye volum, fiber og mikronæring for svært lite energi.
-- **Frukt** – naturlig sukker, men pakket i fiber og vann. Helfrukter er mettende og har lav GL i normale porsjoner. Fruktjuice er ikke det samme – fiberstrukturen er ødelagt og GI stiger.
+- **Grønnsaker** – de mest kalorimessig fordelaktige karbohydratkildene. Brokkoli, kål, spinat, paprika gir mye volum, fiber og mikronæring for svært lite energi.
+- **Frukt** – naturlig sukker, men pakket i fiber og vann. Helfrukter er mettende og har lav GL i normale porsjoner. Fruktjuice er ikke det samme! Fiberstrukturen er ødelagt og GI stiger.
 - **Quinoa** – komplett aminosyreprofil, moderat GI, mer protein enn de fleste korn.
 
 **Moderat prosesserte – bruk med bevissthet:**
 - **Hvit ris** – lav fiber, moderat-høy GI. Næringsmessig fattig, men ikke skadelig. Satiering avhenger mye av hva du spiser den med (fett, protein, fiber fra grønnsaker senker GL for måltidet).
 - **Pasta (al dente)** – lavere GI enn hvit ris pga. tett stivelsesstruktur. Koker du den for lenge, stiger GI.
-- **Vanlig potet** – høy GI, men avkjølt potet danner **resistent stivelse** som fungerer mer som fiber.
+- **Vanlig potet** – Teknisk sett høy GI, men avkjølt potet danner **resistent stivelse** som fungerer mer som fiber.
 
 **Minst næringsrike – begrens i et kalorirestriktivt kosthold:**
 - **Hvitt brød og baguette** – høy GI, lite fiber, minimal metthetsfølelse per kalori.
-- **Frokostblandinger med sukker** – høy GI, rask sultretur, ofte markedsført med villedende helseangloser.
+- **Frokostblandinger med sukker** – høy GI, rask sultretur, ofte markedsført med villedende helsepåstander.
 - **Søtsaker, kaker, brus** – konsentrert sukker uten fiber. Gir raskt kalorioverskudd uten metthet.
 
 ## Praktisk tilnærming til karbohydrater under vektnedgang
@@ -113,7 +113,7 @@ En nyttig tommelfingerregel er å tenke på karbohydrater langs to akser: **fibe
 Du trenger ikke å telle gram karbohydrat nøyaktig. Men noen konkrete bytter gjør en reell forskjell:
 
 1. **Bytt frokostblanding med sukker til havregryn** – betaglukanen i havre er dokumentert å øke metthetsfølelsen og senke blodsukkerresponsen.
-2. **Bytt hvitt brød til fullkornsbrød med høyt fiberinnhold** – ikke alt «fullkornsbrød» er likt, les ingredienslisten.
+2. **Bytt hvitt brød til fullkornsbrød med høyt fiberinnhold** – ikke alt «fullkornsbrød» er likt, les ingredienslisten. Personlig bruker jeg knekkebrødet Wasa Husman.  
 3. **Inkluder belgvekster 3–4 ganger i uken** – linser og kikerter er proteinrike, fibertette og har svært lav GL.
 4. **Spis helfrukter i stedet for juice** – fiberstrukturen i hele frukten senker GI og øker metthet.
 5. **Fyll halvparten av tallerkenen med grønnsaker** – det øker fiberinntaket og reduserer kaloritetthet uten at måltidet føles knapt.
