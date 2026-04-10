@@ -3,6 +3,10 @@ title: "Norsk fisk og vektnedgang – kortreist supervare de fleste spiser for l
 description: "Norge har tilgang til noe av verdens beste fisk, til priser som er lave i internasjonal sammenheng. Likevel spiser nordmenn stadig mindre fisk. Det er et kostholdsvalg med konsekvenser."
 publishDate: 2026-04-10
 tags: ["fisk", "protein", "omega-3", "norsk kosthold", "vektnedgang", "metthet"]
+image:
+  src: "/images/artikler/fersk-fisk.jpg"
+  alt: "Fersk fisk i fiskedisk på Meny i Bergen – torsk, laks, ørret og østers"
+  credit: "Foto: Wolfmann / Wikimedia Commons (CC BY-SA 4.0)"
 ---
 
 Det finnes ikke mange land der folk kan kjøpe fersk torsk, laks, makrell og sild til dagligvarepriser og ha det hjemme på en halvtime. Norge er ett av dem.

@@ -3,6 +3,10 @@ title: "Mellommåltidet – nyttig vane eller vellykket markedsføring?"
 description: "Mellombarer, proteinbarer og frukt-og-nøtt-blandinger selges som sunne og nødvendige. Men trenger kroppen egentlig mat mellom måltidene – og er disse produktene så sunne som emballasjen antyder?"
 publishDate: 2026-04-10
 tags: ["mellommåltid", "snacks", "markedsføring", "sukker", "matvaner", "vektnedgang"]
+image:
+  src: "/images/artikler/mellombar.jpg"
+  alt: "Corny-mueslibar på hvit bakgrunn"
+  credit: "Foto: Superbass / Wikimedia Commons (CC BY-SA 4.0)"
 ---
 
 «Du må spise jevnt for å holde metabolismen i gang.» «Aldri gå mer enn tre timer uten mat.» «Kroppen trenger påfyll mellom måltidene.»

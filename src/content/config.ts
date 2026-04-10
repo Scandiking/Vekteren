@@ -7,6 +7,11 @@ const artikler = defineCollection({
     description: z.string(),
     publishDate: z.date(),
     tags: z.array(z.string()).optional().default([]),
+    image: z.object({
+      src: z.string(),
+      alt: z.string(),
+      credit: z.string(),
+    }).optional(),
   }),
 });
 

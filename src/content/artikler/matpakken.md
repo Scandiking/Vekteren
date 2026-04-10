@@ -3,6 +3,10 @@ title: "Matpakken – Norges beste lunchvane, og hvordan du gjør den bedre"
 description: "Matpakken er en av de mest undervurderte vanene i norsk kosthold. Du kontrollerer innholdet, du sparer penger, og du unngår restaurantens kaloriskjulte porsjoner. Men de fleste matpakker har ett stort problem."
 publishDate: 2026-04-10
 tags: ["matpakke", "lunsj", "norsk kosthold", "protein", "grønnsaker", "matvaner"]
+image:
+  src: "/images/artikler/matboks.jpg"
+  alt: "Matboks med grovbrødskive, skinke og druer"
+  credit: "Foto: Jeuwre / Wikimedia Commons (CC BY-SA 4.0)"
 ---
 
 I de fleste land er det vanlig å kjøpe lunsj. I Norge pakker vi den hjemmefra.

@@ -58,6 +58,20 @@ const { Content } = await entry.render();
         </div>
       </header>
 
+      {entry.data.image && (
+        <figure class="mb-10 -mx-4 sm:-mx-6">
+          <img
+            src={entry.data.image.src}
+            alt={entry.data.image.alt}
+            class="w-full rounded-lg object-cover max-h-96"
+            loading="lazy"
+          />
+          <figcaption class="mt-2 px-4 sm:px-6 text-xs text-gray-400 dark:text-gray-500">
+            {entry.data.image.credit}
+          </figcaption>
+        </figure>
+      )}
+
       <div class="border-t border-gray-200 dark:border-gray-800 pt-10">
         <div class="prose prose-gray dark:prose-invert prose-lg max-w-none">
           <Content />

@@ -3,6 +3,10 @@ title: "Frossen pizza og vekt – hva Grandiosa ikke forteller deg"
 description: "Grandiosa er nesten et norsk kulturminne. Men frossen pizza er et av de mest gjennomoptimaliserte ultraprosesserte produktene i butikkhyllen – og kroppen din reagerer deretter."
 publishDate: 2026-04-10
 tags: ["ultraprosessert mat", "frossen pizza", "vektnedgang", "kalorier", "metthet", "matvaner"]
+image:
+  src: "/images/artikler/frossen-pizza.jpg"
+  alt: "Frossen pizza i emballasje"
+  credit: "Foto: Thomson200 / Wikimedia Commons (CC0)"
 ---
 
 Grandiosa selger rundt 25 millioner pizzaer i Norge hvert år. Det er omtrent fem pizzaer per nordmann. I et land der befolkningen ellers er opptatt av friluftsliv og sunn livsstil, er det et bemerkelsesverdig tall – og det er ikke tilfeldig.

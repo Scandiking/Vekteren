@@ -3,6 +3,10 @@ title: "Stillesittende livsstil – kroppen er ikke laget for dette"
 description: "Vi sitter på jobb, sitter til lunsj, sitter hjemme og sitter oss i søvn. Kroppen er ikke konstruert for dette – og konsekvensene vises ikke bare på vekten, men i hele det metabolske systemet."
 publishDate: 2026-04-10
 tags: ["stillesittende", "NEAT", "hverdagsaktivitet", "metabolisme", "bevegelse", "vektnedgang"]
+image:
+  src: "/images/artikler/stillesittende.jpg"
+  alt: "Person som jobber på laptop ved skrivebord ved vindu"
+  credit: "Foto: DominikaMiazek / Wikimedia Commons (CC BY-SA 4.0)"
 ---
 
 Tenk gjennom en gjennomsnittlig norsk hverdag.
