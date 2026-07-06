@@ -74,11 +74,16 @@
       BMI tar ikke hensyn til muskelmasse, alder eller kjønn. Bruk det som et utgangspunkt, ikke en fasit.
     </p>
   </div>
+
+  <div id="bmi-error" role="alert" class="hidden mt-4 p-3 rounded-lg bg-red-50 dark:bg-red-500/10 text-sm text-red-600 dark:text-red-400">
+    Fyll inn høyde og vekt med gyldige verdier.
+  </div>
 </div>
 
 <script>
   const form = document.getElementById('bmi-form') as HTMLFormElement;
   const result = document.getElementById('bmi-result')!;
+  const errorMsg = document.getElementById('bmi-error')!;
 
   function getBMICategory(bmi: number): string {
     if (bmi < 18.5) return 'Undervekt';
@@ -93,7 +98,13 @@
     const hoyde = parseFloat((document.getElementById('bmi-hoyde') as HTMLInputElement).value);
     const vekt = parseFloat((document.getElementById('bmi-vekt') as HTMLInputElement).value);
 
-    if (isNaN(hoyde) || isNaN(vekt) || hoyde <= 0 || vekt <= 0) return;
+    if (isNaN(hoyde) || isNaN(vekt) || hoyde <= 0 || vekt <= 0) {
+      errorMsg.classList.remove('hidden');
+      result.classList.add('hidden');
+      return;
+    }
+
+    errorMsg.classList.add('hidden');
 
     const bmi = vekt / Math.pow(hoyde / 100, 2);
 
