@@ -32,3 +32,5 @@ npm run preview  # preview production build
 ## Deployment
 
 Deployed on [Vercel](https://vercel.com). Pushes to `master` trigger automatic redeployment via the Vercel GitHub integration.
+
+<!-- git setup check: 2026-07-06 -->
