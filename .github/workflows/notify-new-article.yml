@@ -1,0 +1,52 @@
+name: Notify new article via OneSignal
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect new articles
+        id: detect
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.event.after }}
+        run: |
+          if [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            RANGE="$AFTER_SHA"
+          else
+            RANGE="$BEFORE_SHA...$AFTER_SHA"
+          fi
+          NEW_FILES=$(git diff --name-only --diff-filter=A "$RANGE" -- 'src/content/artikler/*.md' || true)
+          if [ -z "$NEW_FILES" ]; then
+            echo "has_new=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_new=true" >> "$GITHUB_OUTPUT"
+            echo "files<<EOF" >> "$GITHUB_OUTPUT"
+            echo "$NEW_FILES" >> "$GITHUB_OUTPUT"
+            echo "EOF" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Send OneSignal push for each new article
+        if: steps.detect.outputs.has_new == 'true'
+        env:
+          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+          ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}
+          FILES: ${{ steps.detect.outputs.files }}
+        run: |
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            TITLE=$(grep -m1 '^title:' "$file" | sed -E 's/^title:\s*"?//; s/"?\s*$//')
+            SLUG=$(basename "$file" .md)
+            URL="https://vekteren.xyz/artikler/$SLUG/"
+            curl -sf -X POST "https://onesignal.com/api/v1/notifications" \
+              -H "Authorization: Basic $ONESIGNAL_REST_API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "{\"app_id\": \"$ONESIGNAL_APP_ID\", \"included_segments\": [\"Subscribed Users\"], \"headings\": {\"no\": \"Ny artikkel på Vekteren\"}, \"contents\": {\"no\": \"$TITLE\"}, \"url\": \"$URL\"}"
+          done <<< "$FILES"

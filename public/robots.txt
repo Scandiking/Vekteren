@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vekteren.xyz/sitemap-index.xml

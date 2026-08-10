@@ -1,9 +1,45 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import PushSubscribe from '../../components/PushSubscribe.astro';
+import { getSortedArticles } from '../../lib/articles';
 
-const artikler = (await getCollection('artikler'))
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+const artikler = await getSortedArticles();
+
+const allTags = [...new Set(artikler.flatMap(a => a.data.tags))].sort((a, b) =>
+  a.localeCompare(b, 'nb-NO')
+);
+
+type SizeToken = 'featured' | 'big' | 'normal';
+
+function sizeToken(i: number): SizeToken {
+  if (i === 0) return 'featured';
+  if (i > 0 && i % 6 === 0) return 'big';
+  return 'normal';
+}
+
+const sizeClasses: Record<SizeToken, string> = {
+  featured: 'sm:col-span-2 lg:col-span-4 lg:row-span-2',
+  big: 'sm:col-span-2 lg:col-span-3 lg:row-span-2',
+  normal: 'lg:col-span-2',
+};
+
+const titleClasses: Record<SizeToken, string> = {
+  featured: 'text-2xl sm:text-3xl',
+  big: 'text-xl',
+  normal: 'text-lg',
+};
+
+const descriptionClasses: Record<SizeToken, string> = {
+  featured: 'line-clamp-4',
+  big: 'line-clamp-3',
+  normal: 'line-clamp-3',
+};
+
+// Reserve an ad-slot placeholder after every 3rd "big" tile (i.e. every 18 articles
+// after the featured one), so a future ad unit has a pre-sized home in the grid.
+function isAdSlotAfter(i: number): boolean {
+  return i > 0 && i % 18 === 0;
+}
 ---
 
 <BaseLayout title="Artikler" description="Artikler og tanker om vektnedgang, mat, trening og motivasjon.">
@@ -11,7 +47,18 @@ const artikler = (await getCollection('artikler'))
   <section class="bg-white dark:bg-gray-950">
     <div class="section-wrap">
       <div class="inline-block text-xs uppercase tracking-widest font-semibold text-orange-500 mb-3">Blogg</div>
-      <h1 class="section-title">Artikler</h1>
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-3">
+        <h1 class="section-title mb-0">Artikler</h1>
+        <a
+          href="/rss.xml"
+          class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248S0 22.546 0 20.752s1.456-3.248 3.252-3.248 3.251 1.454 3.251 3.248zM1.677 6.462v4.062c8.75 0 15.799 7.048 15.799 15.798h4.062c0-10.958-8.899-19.86-19.861-19.86zm0 7.663v4.062c4.663 0 8.4 3.738 8.4 8.4h4.062c0-6.892-5.57-12.462-12.462-12.462z"/>
+          </svg>
+          RSS
+        </a>
+      </div>
       <p class="section-sub">
         Fordypninger, tanker og erfaringer. Noen er kortere, noen er lange.
         Alle er ærlige.
@@ -23,40 +70,167 @@ const artikler = (await getCollection('artikler'))
           <p class="text-sm">Legg til <code>.md</code>-filer i <code>src/content/artikler/</code> for å komme i gang.</p>
         </div>
       ) : (
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {artikler.map(artikkel => (
-            <a
-              href={`/artikler/${artikkel.slug}`}
-              class="card hover:border-orange-500/50 transition-all duration-200 hover:-translate-y-1 group flex flex-col"
-            >
-              <div class="flex flex-wrap gap-2 mb-3">
-                {artikkel.data.tags.map((tag: string) => (
-                  <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400">
-                    {tag}
-                  </span>
-                ))}
+        <>
+          <div class="mb-8 space-y-4">
+            <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
+              <div class="relative flex-1 max-w-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+                </svg>
+                <input
+                  type="search"
+                  id="article-search"
+                  placeholder="Søk i artikler…"
+                  class="form-input pl-10"
+                  aria-label="Søk i artikler"
+                />
               </div>
+              <PushSubscribe />
+            </div>
 
-              <h2 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors mb-2">
-                {artikkel.data.title}
-              </h2>
+            <div id="tag-chips" class="flex flex-wrap gap-2">
+              {allTags.map(tag => (
+                <button
+                  type="button"
+                  data-tag={tag.toLowerCase()}
+                  class="tag-chip px-3 py-1 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400 hover:bg-orange-200 dark:hover:bg-orange-500/25 transition-colors"
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+          </div>
 
-              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1 line-clamp-3">
-                {artikkel.data.description}
-              </p>
+          <p id="no-results" class="hidden card text-center py-16 text-gray-400 dark:text-gray-500">
+            Ingen artikler matcher søket.
+          </p>
 
-              <p class="text-xs text-gray-400 dark:text-gray-500 mt-4">
-                {artikkel.data.publishDate.toLocaleDateString('nb-NO', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </p>
-            </a>
-          ))}
-        </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-fr">
+            {artikler.flatMap((artikkel, i) => {
+              const token = sizeToken(i);
+              const tile = (
+                <a
+                  href={`/artikler/${artikkel.slug}`}
+                  data-title={artikkel.data.title.toLowerCase()}
+                  data-description={artikkel.data.description.toLowerCase()}
+                  data-tags={artikkel.data.tags.join(',').toLowerCase()}
+                  class:list={[
+                    'group relative flex flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:border-orange-500/50 transition-all duration-200 hover:-translate-y-1',
+                    sizeClasses[token],
+                  ]}
+                >
+                  {artikkel.data.image && (
+                    <div class="w-full overflow-hidden" style={token === 'normal' ? 'aspect-ratio: 16/9' : 'aspect-ratio: 21/9'}>
+                      <img
+                        src={artikkel.data.image.src}
+                        alt={artikkel.data.image.alt}
+                        loading="lazy"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
+
+                  <div class="flex flex-col flex-1 p-6">
+                    <div class="flex flex-wrap gap-2 mb-3">
+                      {artikkel.data.tags.map((tag: string) => (
+                        <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <h2
+                      class:list={[
+                        'font-bold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors mb-2',
+                        titleClasses[token],
+                      ]}
+                    >
+                      {artikkel.data.title}
+                    </h2>
+
+                    <p
+                      class:list={[
+                        'text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1',
+                        descriptionClasses[token],
+                      ]}
+                    >
+                      {artikkel.data.description}
+                    </p>
+
+                    <p class="text-xs text-gray-400 dark:text-gray-500 mt-4">
+                      {artikkel.data.publishDate.toLocaleDateString('nb-NO', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </p>
+                  </div>
+                </a>
+              );
+
+              if (isAdSlotAfter(i)) {
+                // AD SLOT: reserved for future ad unit
+                return [
+                  tile,
+                  <div
+                    class="hidden lg:flex lg:col-span-2 items-center justify-center rounded-xl border border-dashed border-gray-300 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-600"
+                    aria-hidden="true"
+                  >
+                    Annonseplass
+                  </div>,
+                ];
+              }
+              return [tile];
+            })}
+          </div>
+        </>
       )}
     </div>
   </section>
 
 </BaseLayout>
+
+<script>
+  const searchInput = document.getElementById('article-search') as HTMLInputElement | null;
+  const tagChips = document.querySelectorAll<HTMLButtonElement>('.tag-chip');
+  const tiles = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-title]'));
+  const noResults = document.getElementById('no-results');
+
+  const selectedTags = new Set<string>();
+
+  function applyFilter() {
+    const query = (searchInput?.value ?? '').trim().toLowerCase();
+    let visibleCount = 0;
+
+    for (const tile of tiles) {
+      const title = tile.dataset.title ?? '';
+      const description = tile.dataset.description ?? '';
+      const tags = (tile.dataset.tags ?? '').split(',').filter(Boolean);
+
+      const matchesText = query === '' || title.includes(query) || description.includes(query);
+      const matchesTags = selectedTags.size === 0 || [...selectedTags].every(t => tags.includes(t));
+      const visible = matchesText && matchesTags;
+
+      tile.classList.toggle('hidden', !visible);
+      if (visible) visibleCount++;
+    }
+
+    noResults?.classList.toggle('hidden', visibleCount > 0);
+  }
+
+  searchInput?.addEventListener('input', applyFilter);
+
+  tagChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const tag = chip.dataset.tag ?? '';
+      if (selectedTags.has(tag)) {
+        selectedTags.delete(tag);
+        chip.classList.remove('bg-orange-500', 'text-white', 'dark:bg-orange-500', 'dark:text-white');
+      } else {
+        selectedTags.add(tag);
+        chip.classList.add('bg-orange-500', 'text-white', 'dark:bg-orange-500', 'dark:text-white');
+      }
+      applyFilter();
+    });
+  });
+</script>

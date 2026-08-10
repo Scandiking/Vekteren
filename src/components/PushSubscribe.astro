@@ -1,0 +1,33 @@
+---
+---
+
+<button
+  id="push-subscribe-btn"
+  type="button"
+  class="btn-secondary whitespace-nowrap"
+  aria-label="Få varsel om nye artikler"
+>
+  🔔 Varsle meg om nye artikler
+</button>
+
+<script>
+  const btn = document.getElementById('push-subscribe-btn') as HTMLButtonElement | null;
+
+  btn?.addEventListener('click', () => {
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    window.OneSignalDeferred.push(async (OneSignal: any) => {
+      const permission = await OneSignal.Notifications.permission;
+      if (permission) {
+        btn.textContent = '🔔 Du får varsler';
+        btn.disabled = true;
+        return;
+      }
+      await OneSignal.Notifications.requestPermission();
+      const granted = await OneSignal.Notifications.permission;
+      if (granted) {
+        btn.textContent = '🔔 Du får varsler';
+        btn.disabled = true;
+      }
+    });
+  });
+</script>
