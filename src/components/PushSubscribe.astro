@@ -13,21 +13,32 @@
 <script>
   const btn = document.getElementById('push-subscribe-btn') as HTMLButtonElement | null;
 
+  function markSubscribed() {
+    if (!btn) return;
+    btn.textContent = '🔔 Du får varsler';
+    btn.disabled = true;
+  }
+
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+  // Reflect the real permission state on page load, not just after a click —
+  // otherwise the button forgets you're already subscribed on every refresh.
+  window.OneSignalDeferred.push(async (OneSignal: any) => {
+    const permission = await OneSignal.Notifications.permission;
+    if (permission) markSubscribed();
+  });
+
   btn?.addEventListener('click', () => {
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     window.OneSignalDeferred.push(async (OneSignal: any) => {
       const permission = await OneSignal.Notifications.permission;
       if (permission) {
-        btn.textContent = '🔔 Du får varsler';
-        btn.disabled = true;
+        markSubscribed();
         return;
       }
       await OneSignal.Notifications.requestPermission();
       const granted = await OneSignal.Notifications.permission;
-      if (granted) {
-        btn.textContent = '🔔 Du får varsler';
-        btn.disabled = true;
-      }
+      if (granted) markSubscribed();
     });
   });
 </script>
