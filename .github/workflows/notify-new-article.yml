@@ -52,8 +52,15 @@ jobs:
             TITLE=$(grep -m1 '^title:' "$file" | sed -E 's/^title:\s*"?//; s/"?\s*$//')
             SLUG=$(basename "$file" .md)
             URL="https://vekteren.xyz/artikler/$SLUG/"
-            curl -s -w "\nHTTP %{http_code}\n" -X POST "https://onesignal.com/api/v1/notifications" \
+            RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://onesignal.com/api/v1/notifications" \
               -H "Authorization: Basic $ONESIGNAL_REST_API_KEY" \
               -H "Content-Type: application/json" \
-              -d "{\"app_id\": \"$ONESIGNAL_APP_ID\", \"include_player_ids\": $PLAYER_IDS, \"headings\": {\"no\": \"Ny artikkel på Vekteren\"}, \"contents\": {\"no\": \"$TITLE\"}, \"url\": \"$URL\"}"
+              -d "{\"app_id\": \"$ONESIGNAL_APP_ID\", \"include_player_ids\": $PLAYER_IDS, \"headings\": {\"en\": \"Ny artikkel på Vekteren\", \"no\": \"Ny artikkel på Vekteren\"}, \"contents\": {\"en\": \"$TITLE\", \"no\": \"$TITLE\"}, \"url\": \"$URL\"}")
+            STATUS=$(echo "$RESPONSE" | tail -n1)
+            BODY=$(echo "$RESPONSE" | sed '$d')
+            echo "$BODY"
+            if [ "$STATUS" -ge 400 ]; then
+              echo "OneSignal send failed with HTTP $STATUS"
+              exit 1
+            fi
           done <<< "$FILES"
