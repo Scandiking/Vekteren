@@ -48,5 +48,5 @@ jobs:
             curl -sf -X POST "https://onesignal.com/api/v1/notifications" \
               -H "Authorization: Basic $ONESIGNAL_REST_API_KEY" \
               -H "Content-Type: application/json" \
-              -d "{\"app_id\": \"$ONESIGNAL_APP_ID\", \"included_segments\": [\"Subscribed Users\"], \"headings\": {\"no\": \"Ny artikkel på Vekteren\"}, \"contents\": {\"no\": \"$TITLE\"}, \"url\": \"$URL\"}"
+              -d "{\"app_id\": \"$ONESIGNAL_APP_ID\", \"target_channel\": \"push\", \"included_segments\": [\"Subscribed Users\"], \"headings\": {\"no\": \"Ny artikkel på Vekteren\"}, \"contents\": {\"no\": \"$TITLE\"}, \"url\": \"$URL\"}"
           done <<< "$FILES"
