@@ -3,6 +3,7 @@ name: Notify new article via OneSignal
 on:
   push:
     branches: [master]
+  workflow_dispatch:
 
 jobs:
   notify:
@@ -11,6 +12,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      # TEMPORARY: manual-trigger-only diagnostic to see real subscriber
+      # records, since the send keeps failing despite dashboard-confirmed
+      # subscribers. Remove once push delivery is confirmed working.
+      - name: Debug - list OneSignal subscriptions
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+          ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}
+        run: |
+          echo "--- /players (legacy) ---"
+          curl -s "https://onesignal.com/api/v1/players?app_id=$ONESIGNAL_APP_ID&limit=10" \
+            -H "Authorization: Basic $ONESIGNAL_REST_API_KEY" | jq '.'
+          echo "--- app info ---"
+          curl -s "https://onesignal.com/api/v1/apps/$ONESIGNAL_APP_ID" \
+            -H "Authorization: Basic $ONESIGNAL_REST_API_KEY" | jq '{id, name, players, messageable_players}'
 
       - name: Detect new articles
         id: detect
