@@ -19,26 +19,46 @@
     btn.disabled = true;
   }
 
+  function markNotSubscribed() {
+    if (!btn) return;
+    btn.textContent = '🔔 Varsle meg om nye artikler';
+    btn.disabled = false;
+  }
+
   window.OneSignalDeferred = window.OneSignalDeferred || [];
 
-  // Reflect the real permission state on page load, not just after a click —
-  // otherwise the button forgets you're already subscribed on every refresh.
+  // Browser notification permission being "granted" is not the same as
+  // OneSignal actually having you opted in (the thing that determines
+  // whether a push send reaches you) — check and reflect the real
+  // OneSignal subscription state, on load and whenever it changes.
   window.OneSignalDeferred.push(async (OneSignal: any) => {
-    const permission = await OneSignal.Notifications.permission;
-    if (permission) markSubscribed();
+    if (OneSignal.User.PushSubscription.optedIn) markSubscribed();
+
+    OneSignal.User.PushSubscription.addEventListener('change', (event: any) => {
+      if (event?.current?.optedIn) markSubscribed();
+      else markNotSubscribed();
+    });
   });
 
   btn?.addEventListener('click', () => {
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     window.OneSignalDeferred.push(async (OneSignal: any) => {
-      const permission = await OneSignal.Notifications.permission;
-      if (permission) {
+      if (OneSignal.User.PushSubscription.optedIn) {
         markSubscribed();
         return;
       }
-      await OneSignal.Notifications.requestPermission();
-      const granted = await OneSignal.Notifications.permission;
-      if (granted) markSubscribed();
+
+      const permission = await OneSignal.Notifications.permission;
+      if (permission) {
+        // Permission was already granted at the browser level, but OneSignal
+        // isn't opted in (this is the state that caused pushes to miss you) —
+        // opt back in explicitly instead of re-prompting for permission.
+        await OneSignal.User.PushSubscription.optIn();
+      } else {
+        await OneSignal.Notifications.requestPermission();
+      }
+
+      if (OneSignal.User.PushSubscription.optedIn) markSubscribed();
     });
   });
 </script>
