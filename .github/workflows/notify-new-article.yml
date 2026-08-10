@@ -52,7 +52,7 @@ jobs:
             TITLE=$(grep -m1 '^title:' "$file" | sed -E 's/^title:\s*"?//; s/"?\s*$//')
             SLUG=$(basename "$file" .md)
             URL="https://vekteren.xyz/artikler/$SLUG/"
-            curl -sf -X POST "https://onesignal.com/api/v1/notifications" \
+            curl -s -w "\nHTTP %{http_code}\n" -X POST "https://onesignal.com/api/v1/notifications" \
               -H "Authorization: Basic $ONESIGNAL_REST_API_KEY" \
               -H "Content-Type: application/json" \
               -d "{\"app_id\": \"$ONESIGNAL_APP_ID\", \"include_player_ids\": $PLAYER_IDS, \"headings\": {\"no\": \"Ny artikkel på Vekteren\"}, \"contents\": {\"no\": \"$TITLE\"}, \"url\": \"$URL\"}"
