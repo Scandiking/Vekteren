@@ -13,22 +13,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # TEMPORARY: manual-trigger-only diagnostic to see real subscriber
-      # records, since the send keeps failing despite dashboard-confirmed
-      # subscribers. Remove once push delivery is confirmed working.
-      - name: Debug - list OneSignal subscriptions
-        if: github.event_name == 'workflow_dispatch'
-        env:
-          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
-          ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}
-        run: |
-          echo "--- /players (legacy) ---"
-          curl -s "https://onesignal.com/api/v1/players?app_id=$ONESIGNAL_APP_ID&limit=10" \
-            -H "Authorization: Basic $ONESIGNAL_REST_API_KEY" | jq '.'
-          echo "--- app info ---"
-          curl -s "https://onesignal.com/api/v1/apps/$ONESIGNAL_APP_ID" \
-            -H "Authorization: Basic $ONESIGNAL_REST_API_KEY" | jq '{id, name, players, messageable_players}'
-
       - name: Detect new articles
         id: detect
         env:
@@ -57,6 +41,12 @@ jobs:
           ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}
           FILES: ${{ steps.detect.outputs.files }}
         run: |
+          # included_segments targeting was unreliable on this app (returned
+          # "not subscribed" for confirmed, messageable players), so send
+          # directly to each player's ID instead.
+          PLAYER_IDS=$(curl -s "https://onesignal.com/api/v1/players?app_id=$ONESIGNAL_APP_ID&limit=300" \
+            -H "Authorization: Basic $ONESIGNAL_REST_API_KEY" | jq -c '[.players[].id]')
+
           while IFS= read -r file; do
             [ -z "$file" ] && continue
             TITLE=$(grep -m1 '^title:' "$file" | sed -E 's/^title:\s*"?//; s/"?\s*$//')
@@ -65,5 +55,5 @@ jobs:
             curl -sf -X POST "https://onesignal.com/api/v1/notifications" \
               -H "Authorization: Basic $ONESIGNAL_REST_API_KEY" \
               -H "Content-Type: application/json" \
-              -d "{\"app_id\": \"$ONESIGNAL_APP_ID\", \"target_channel\": \"push\", \"included_segments\": [\"Subscribed Users\"], \"headings\": {\"no\": \"Ny artikkel på Vekteren\"}, \"contents\": {\"no\": \"$TITLE\"}, \"url\": \"$URL\"}"
+              -d "{\"app_id\": \"$ONESIGNAL_APP_ID\", \"include_player_ids\": $PLAYER_IDS, \"headings\": {\"no\": \"Ny artikkel på Vekteren\"}, \"contents\": {\"no\": \"$TITLE\"}, \"url\": \"$URL\"}"
           done <<< "$FILES"
