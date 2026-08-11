@@ -1,7 +1,7 @@
 ---
 title: "Forskjellen på å gå ned i vekt fort og sakte"
 description: "Rask vektnedgang gir raskere resultater, men mer muskeltap og større risiko for jojo-effekt. Sakte vektnedgang er tregere, men bevarer muskler og er lettere å opprettholde."
-publishDate: 2026-04-06
+publishDate: 2026-05-04
 tags: ["tempo", "jojo-effekt", "muskelmasse", "bærekraft", "vektnedgang"]
 ---
 

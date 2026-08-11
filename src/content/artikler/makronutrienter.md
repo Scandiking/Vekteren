@@ -1,7 +1,7 @@
 ---
 title: "Makronutrienter – hva de er, hva de gjør, og hvordan du bruker dem"
 description: "Protein, fett og karbohydrater. Tre næringsstoffer som til sammen utgjør nesten all energien du spiser – og som oppfører seg svært ulikt i kroppen. Her er det grunnleggende du bør forstå."
-publishDate: 2026-04-05
+publishDate: 2026-04-13
 tags: ["makroer", "næring", "kalorier", "vektnedgang", "nybegynner"]
 ---
 

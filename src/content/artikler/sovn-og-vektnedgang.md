@@ -1,7 +1,7 @@
 ---
 title: "Søvn og vektnedgang – derfor er nattesøvnen undervurdert"
 description: "Dårlig søvn gjør deg sultnere, øker fettlagringen og svekker viljen. Her er hva forskningen sier om søvnens rolle i vektnedgang – og hva du kan gjøre."
-publishDate: 2026-04-10
+publishDate: 2026-07-04
 tags: ["søvn", "vektnedgang", "hormoner", "ghrelin", "leptin", "hverdagsvaner"]
 ---
 

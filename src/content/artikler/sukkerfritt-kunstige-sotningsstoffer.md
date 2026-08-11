@@ -1,7 +1,7 @@
 ---
 title: "Sukkerfritt – bedre eller bare annerledes?"
 description: "Aspartam og acesulfam K markedsføres som sunne alternativer til sukker. Men forskning tyder på at kunstige søtningsmidler forstyrrer tarmfloraen, forvirrer kroppens sultregulering og kan øke inntaket over tid."
-publishDate: 2026-04-05
+publishDate: 2026-04-22
 tags: ["sukker", "brus", "energidrikk", "søtningsmidler", "ultraprosessert"]
 ---
 

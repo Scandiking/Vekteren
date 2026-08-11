@@ -1,7 +1,7 @@
 ---
 title: "Hvor lang tid tar det å gå ned 10 kg?"
 description: "Med et realistisk kaloriunderskudd tar det 3–6 måneder å gå ned 10 kg. Her er de konkrete tallene og hva som faktisk påvirker tempoet."
-publishDate: 2026-04-06
+publishDate: 2026-05-21
 tags: ["vektnedgang", "tempo", "kalorier", "forventninger"]
 ---
 

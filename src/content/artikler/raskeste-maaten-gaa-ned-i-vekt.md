@@ -1,7 +1,7 @@
 ---
 title: "Hva er den raskeste måten å gå ned i vekt på?"
 description: "Den raskeste bærekraftige vektnedgangen er 0,5–1 kg per uke. Her er hva som faktisk virker raskt uten at du ødelegger stoffskiftet eller mister muskelmasse."
-publishDate: 2026-04-06
+publishDate: 2026-06-15
 tags: ["vektnedgang", "raskt", "tips", "kalorier", "forbrenning"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Hvor fort bør du gå ned i vekt – og hva skjer hvis du gjør det for fort?"
 description: "0,5–1 kg per uke er et realistisk og bærekraftig mål, men det er ikke hele historien. Kroppen tilpasser seg kalorirestriksjon på måter som gjør vektnedgang tregere over tid – og det er ikke svikt."
-publishDate: 2026-04-05
+publishDate: 2026-04-18
 tags: ["vektnedgang", "tempo", "metabolisme", "forventninger", "kalorirestriksjon"]
 ---
 

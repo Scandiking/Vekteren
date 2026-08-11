@@ -1,7 +1,7 @@
 ---
 title: "Hvorfor går jeg ikke ned i vekt selv om jeg spiser lite?"
 description: "Vanligste årsaker: du spiser mer enn du tror, kroppen holder på vann, eller du er på et vektplatå. Her er hva du faktisk bør sjekke."
-publishDate: 2026-04-06
+publishDate: 2026-06-05
 tags: ["vektplatå", "feilsøking", "kalorier", "vektnedgang", "stoffskifte"]
 ---
 

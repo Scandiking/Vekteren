@@ -1,7 +1,7 @@
 ---
 title: "Mellommåltidet – nyttig vane eller vellykket markedsføring?"
 description: "Mellombarer, proteinbarer og frukt-og-nøtt-blandinger selges som sunne og nødvendige. Men trenger kroppen egentlig mat mellom måltidene – og er disse produktene så sunne som emballasjen antyder?"
-publishDate: 2026-04-10
+publishDate: 2026-07-15
 tags: ["mellommåltid", "snacks", "markedsføring", "sukker", "matvaner", "vektnedgang"]
 image:
   src: "/images/artikler/mellombar.jpg"

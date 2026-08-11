@@ -1,7 +1,7 @@
 ---
 title: "Fiber og metthet – den enkleste måten å spise mindre på"
 description: "Fiber er det næringsstoffet de fleste nordmenn spiser for lite av – og det er også en av de kraftigste naturlige bremsene mot overspising. Her er hva fiber gjør og hvordan du får nok av det."
-publishDate: 2026-04-10
+publishDate: 2026-07-01
 tags: ["fiber", "metthet", "kosthold", "vektnedgang", "blodsukker", "hverdagskost"]
 ---
 

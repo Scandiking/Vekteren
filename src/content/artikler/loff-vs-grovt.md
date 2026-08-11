@@ -1,7 +1,7 @@
 ---
 title: "Grovt eller loff – ikke all brød er det samme for kroppen"
 description: "Nordmenn spiser mye brød, og det trenger ikke være et problem. Norsk grovt rugbrød er faktisk blant de beste karbohydratkildene som finnes. Men loff er noe helt annet – og forskjellen er større enn du kanskje tror."
-publishDate: 2026-04-10
+publishDate: 2026-07-29
 tags: ["brød", "kosthold", "glykemisk indeks", "fiber", "blodsukker", "norsk kosthold"]
 image:
   src: "/images/artikler/rugbrod.jpg"

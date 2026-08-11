@@ -1,7 +1,7 @@
 ---
 title: "Norsk festdrikking vs. kontinental drikkekultur – hva kroppen opplever ulikt"
 description: "Nordmenn drikker gjerne lite i ukedagene og mye i helgene. Italienere og franskmenn drikker litt til maten nesten hver dag. Begge drikker alkohol – men kroppen reagerer svært forskjellig."
-publishDate: 2026-04-10
+publishDate: 2026-07-19
 tags: ["alkohol", "drikkemønster", "vektnedgang", "kortisol", "søvn", "matvaner"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Periodisk faste – fungerer det for vektnedgang?"
 description: "Periodisk faste kan hjelpe deg å gå ned i vekt, men ikke av noen spesiell grunn utenom at det hjelper mange å spise mindre. Her er hva forskningen faktisk sier."
-publishDate: 2026-04-06
+publishDate: 2026-06-26
 tags: ["periodisk faste", "intermittent fasting", "16:8", "kosthold", "vektnedgang"]
 ---
 

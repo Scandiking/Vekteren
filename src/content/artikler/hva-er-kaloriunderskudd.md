@@ -1,7 +1,7 @@
 ---
 title: "Hva er kaloriunderskudd – enkelt forklart"
 description: "Kaloriunderskudd betyr at du spiser færre kalorier enn kroppen forbrenner. Det er det eneste som faktisk fører til varig vektnedgang. Her er alt du trenger å vite."
-publishDate: 2026-04-06
+publishDate: 2026-05-16
 tags: ["kalorier", "kaloriunderskudd", "grunnleggende", "vektnedgang"]
 ---
 

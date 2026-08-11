@@ -1,7 +1,7 @@
 ---
 title: "Pepsi Max og vekt – hvorfor null kalorier ikke er hele historien"
 description: "Norge er blant verdens største forbrukere av Pepsi Max. Men hva gjør egentlig kunstig søtet brus med kroppen – og hvorfor drikker så mange som sliter med vekten det meste av det?"
-publishDate: 2026-04-10
+publishDate: 2026-07-10
 tags: ["sukkerholdig drikke", "kunstig søtning", "insulin", "vaner", "mat og drikke", "vektnedgang"]
 ---
 

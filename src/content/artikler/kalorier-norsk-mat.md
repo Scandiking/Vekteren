@@ -1,7 +1,7 @@
 ---
 title: "Kaloriinnhold i vanlig norsk mat – komplett liste"
 description: "Hvor mange kalorier er det i brunost, leverpostei, knekkebrød, fiskekaker og annen vanlig norsk mat? Her er en praktisk oversikt du kan bruke i hverdagen."
-publishDate: 2026-04-06
+publishDate: 2026-06-10
 tags: ["kalorier", "norsk mat", "matvaretabell", "kaloritelling"]
 ---
 

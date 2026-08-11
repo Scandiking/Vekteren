@@ -1,7 +1,7 @@
 ---
 title: "Fra lapskaus til tacofredag – hva skjedde med norsk middag?"
 description: "Tradisjonell norsk middag – fårikål, fiskekaker, kjøttkaker i brun saus – var faktisk god mat. Billig, mettende, lite bearbeidet. Så kom ferdigmaten. Her er hva vi byttet bort."
-publishDate: 2026-04-10
+publishDate: 2026-08-03
 tags: ["norsk kosthold", "tradisjonell mat", "middag", "ultraprosessert", "matvaner", "vektnedgang"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Hvor mye kan jeg gå ned i vekt på 1 måned?"
 description: "Et realistisk mål er 1,5–3 kg per måned med et bærekraftig kaloriunderskudd. De første ukene kan gi mer på grunn av vannvekttap."
-publishDate: 2026-04-06
+publishDate: 2026-06-01
 tags: ["forventninger", "vektnedgang", "tempo", "en måned", "kalorier"]
 ---
 

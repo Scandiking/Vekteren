@@ -1,7 +1,7 @@
 ---
 title: "Karbohydrater og vektnedgang – ikke fienden, men ikke nøytral heller"
 description: "Karbohydrater er den største energikilden i de flestes kosthold – og det er stor forskjell på hvitt brød og linser, selv om begge er karbohydrater. Her er hva du trenger å vite."
-publishDate: 2026-04-05
+publishDate: 2026-04-11
 tags: ["karbohydrater", "glykemisk indeks", "blodsukker", "vektnedgang", "fiber"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Kostholdstilskudd for unge – hva du ikke trenger, og hva som faktisk funker"
 description: "Kosttilskuddbransjen omsetter for milliarder, mye rettet mot unge som trener. De fleste produktene er unødvendige, kraftig overpriset – og har billige, bedre alternativer i vanlig mat."
-publishDate: 2026-04-10
+publishDate: 2026-08-06
 tags: ["kosttilskudd", "proteinpulver", "BCAA", "kreatin", "unge", "trening", "markedsføring"]
 ---
 

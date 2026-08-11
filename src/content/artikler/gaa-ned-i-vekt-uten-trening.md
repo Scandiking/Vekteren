@@ -1,7 +1,7 @@
 ---
 title: "Er det mulig å gå ned i vekt uten å trene?"
 description: "Ja – vektnedgang skjer gjennom kaloriunderskudd, og du kan oppnå det uten et treningsprogram. Kostholdet står for 80–90 % av resultatet."
-publishDate: 2026-04-06
+publishDate: 2026-05-09
 tags: ["trening", "kosthold", "kaloriunderskudd", "hverdagsaktivitet", "vektnedgang"]
 ---
 

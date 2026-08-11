@@ -1,7 +1,7 @@
 ---
 title: "Protein og vektnedgang – hva kroppen faktisk gjør med det du spiser"
 description: "Protein er det viktigste enkeltmakronæringsstoffet for vektnedgang – men ikke alt protein er like bra, og mer er ikke alltid bedre. Her er hva forskningen sier."
-publishDate: 2026-04-05
+publishDate: 2026-04-16
 tags: ["protein", "vektnedgang", "næring", "muskelmasse"]
 ---
 

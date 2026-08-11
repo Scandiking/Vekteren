@@ -1,7 +1,7 @@
 ---
 title: "Trening og vektnedgang – hvorfor du bør trene selv om det betyr lite for vekten"
 description: "Trening forbrenner overraskende få kalorier, og kroppen kompenserer for mye av det. Likevel er trening en av de viktigste tingene du kan gjøre under vektnedgang – bare ikke av de grunnene du tror."
-publishDate: 2026-04-05
+publishDate: 2026-04-25
 tags: ["trening", "vektnedgang", "styrketrening", "kardio", "muskelmasse", "metabolisme"]
 ---
 

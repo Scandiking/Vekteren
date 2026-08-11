@@ -1,7 +1,7 @@
 ---
 title: "Hvordan gå ned i vekt etter 40"
 description: "Etter 40 synker stoffskiftet litt og muskelmassen minker gradvis. Men vektnedgang er fullt mulig – det krever bare litt andre prioriteringer enn i 20-årene."
-publishDate: 2026-04-06
+publishDate: 2026-05-07
 tags: ["alder", "over 40", "stoffskifte", "muskelmasse", "vektnedgang"]
 ---
 

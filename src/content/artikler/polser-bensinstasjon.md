@@ -1,7 +1,7 @@
 ---
 title: "Pølsen på bensinstasjonen – Norges mest undervurderte kalorifelle"
 description: "En pølse med lompe er ikke verdens verste mat. Men det er blitt en daglig vane for mange nordmenn – og den skjuler mer kalorier, salt og bearbeidet kjøtt enn de fleste er klar over."
-publishDate: 2026-04-10
+publishDate: 2026-08-09
 tags: ["pølser", "bensinstasjon", "bearbeidet kjøtt", "impulskjøp", "hverdagskost", "vektnedgang"]
 ---
 

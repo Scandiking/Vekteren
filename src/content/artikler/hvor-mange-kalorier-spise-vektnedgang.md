@@ -1,7 +1,7 @@
 ---
 title: "Hvor mange kalorier bør jeg spise for å gå ned i vekt?"
 description: "For å gå ned i vekt bør du spise 300–600 kalorier mindre enn du forbrenner per dag. Her er hvordan du finner ditt personlige tall og setter opp et mål som faktisk holder."
-publishDate: 2026-04-06
+publishDate: 2026-05-25
 tags: ["kalorier", "kaloriinntak", "kaloriunderskudd", "vektnedgang"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Fett i kostholdet – hva det gjør, og hvorfor du ikke bør unngå fett"
 description: "Fett gjør deg ikke feit. Men ikke alt fett er likt. Mengden du spiser kan sabotere kaloriregnskapet uten at du merker det. Her er det du trenger å vite."
-publishDate: 2026-04-05
+publishDate: 2026-04-04
 tags: ["fett", "næring", "vektnedgang", "omega-3"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Hva er BMI – og hva betyr tallet ditt?"
 description: "BMI er et enkelt mål på forholdet mellom vekt og høyde. Det har klare begrensninger, men gir likevel nyttig informasjon om helserisiko. Her er hva tallet ditt egentlig betyr."
-publishDate: 2026-04-06
+publishDate: 2026-06-20
 tags: ["BMI", "normalvekt", "kroppsvekt", "helse", "vektnedgang"]
 ---
 

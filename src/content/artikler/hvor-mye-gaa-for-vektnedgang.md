@@ -1,7 +1,7 @@
 ---
 title: "Hvor mye må jeg gå hver dag for å gå ned i vekt?"
 description: "7 000–10 000 skritt daglig bidrar med 250–500 kcal ekstra forbrenning. Kombinert med kostholdsunderskudd er daglig gåing et av de mest effektive verktøyene for varig vektnedgang."
-publishDate: 2026-04-06
+publishDate: 2026-05-30
 tags: ["gåing", "skritt", "hverdagsaktivitet", "vektnedgang", "forbrenning"]
 ---
 

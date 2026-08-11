@@ -1,7 +1,7 @@
 ---
 title: "Stress og vektøkning – hva kortisol gjør med kroppen din"
 description: "Kronisk stress gjør det vanskeligere å gå ned i vekt – ikke fordi du mangler disiplin, men fordi stresshormonet kortisol aktivt motarbeider deg. Her er hva som skjer og hva du kan gjøre."
-publishDate: 2026-04-10
+publishDate: 2026-07-08
 tags: ["stress", "kortisol", "vektøkning", "magefedt", "hormoner", "hverdagsvaner"]
 ---
 

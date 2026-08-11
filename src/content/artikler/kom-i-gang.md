@@ -1,7 +1,7 @@
 ---
 title: "Kom i gang med kaloritelling – uten å bli gal av det"
 description: "Kaloritelling trenger ikke å være en besettelse. Her er en praktisk tilnærming som faktisk er bærekraftig over tid."
-publishDate: 2024-03-01
+publishDate: 2026-04-02
 tags: ["kalorier", "tips", "nybegynner"]
 ---
 

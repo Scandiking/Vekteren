@@ -1,7 +1,7 @@
 ---
 title: "Hvordan holde vekten etter vektnedgang"
 description: "80 % av de som går ned i vekt legger det på igjen innen 2–3 år. Her er hva de som lykkes gjør annerledes, og hvordan du unngår jojo-effekten."
-publishDate: 2026-04-06
+publishDate: 2026-05-13
 tags: ["vedlikehold", "jojo-effekt", "vaner", "langsiktig", "vektnedgang"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Hva _bør_ jeg gjøre?"
 description: "Det finnes mye stoff om hva du ikke skal gjøre. Her er en konkret liste over hva du faktisk skal gjøre – og en kort forklaring på hvorfor det virker."
-publishDate: 2026-04-05
+publishDate: 2026-04-07
 tags: ["tips", "nybegynner", "vektnedgang", "praktisk"]
 ---
 

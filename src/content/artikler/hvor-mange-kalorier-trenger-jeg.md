@@ -1,7 +1,7 @@
 ---
 title: "Hvor mange kalorier trenger jeg per dag?"
 description: "De fleste voksne trenger 1 800–2 800 kalorier per dag for å holde vekten. Her er hvordan du finner ditt eget tall og hva du bør gjøre med det."
-publishDate: 2026-04-06
+publishDate: 2026-05-27
 tags: ["kalorier", "TDEE", "forbrenning", "kaloriinntak", "grunnleggende"]
 ---
 

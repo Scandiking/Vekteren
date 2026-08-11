@@ -1,7 +1,7 @@
 ---
 title: "Energidrikk og vekt – hva Monster og Red Bull egentlig gjør med kroppen"
 description: "Energidrikker er blant de raskest voksende produktkategoriene i Norge. Men kombinasjonen av høy koffein, sukker eller kunstig søtning og kronisk inntak har en pris kroppen betaler stille."
-publishDate: 2026-04-10
+publishDate: 2026-07-22
 tags: ["energidrikk", "koffein", "kortisol", "søvn", "vektnedgang", "vaner"]
 ---
 

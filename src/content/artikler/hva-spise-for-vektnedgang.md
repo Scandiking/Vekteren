@@ -1,7 +1,7 @@
 ---
 title: "Hva bør jeg spise for å gå ned i vekt?"
 description: "Det finnes ingen magisk mat som gjør deg slank. Men noen matvarer gjør det mye lettere å holde et kaloriunderskudd. Her er hva som faktisk hjelper."
-publishDate: 2026-04-06
+publishDate: 2026-05-18
 tags: ["kosthold", "mat", "protein", "metthet", "vektnedgang"]
 ---
 

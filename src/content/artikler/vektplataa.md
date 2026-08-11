@@ -1,7 +1,7 @@
 ---
 title: "Vektplatå – hvorfor vektnedgangen stopper, og hva du faktisk kan gjøre"
 description: "Et vektplatå er ikke tegn på at noe er galt. Det er en forutsigbar fysiologisk respons på vektnedgang. Her er mekanismene, og hva som faktisk hjelper."
-publishDate: 2026-04-05
+publishDate: 2026-05-02
 tags: ["vektplatå", "metabolisme", "tilpasning", "kalorirestriksjon", "vektnedgang"]
 ---
 

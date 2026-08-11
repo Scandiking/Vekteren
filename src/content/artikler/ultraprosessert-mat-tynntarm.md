@@ -1,7 +1,7 @@
 ---
 title: "Ultraprosessert mat, tynntarmen og vekttap – hva forskningen egentlig viser"
 description: "Ultraprosessert mat er mer enn tomme kalorier. Den skader tarmslimhinnen, hemmer kroppens eget rengjøringssystem og setter i gang en stille betennelsesprosess som gjør vektnedgang vanskeligere."
-publishDate: 2025-04-05
+publishDate: 2026-04-27
 tags: ["mat", "tarmen", "inflammasjon", "forskning"]
 ---
 

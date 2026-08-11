@@ -1,7 +1,7 @@
 ---
 title: "Alkohol og vektnedgang – hvor mange kalorier er det egentlig?"
 description: "Alkohol inneholder 7 kcal per gram – nesten like mye som fett. En vanlig helg med litt drikking kan utslette en hel ukes kaloriunderskudd. Her er de konkrete tallene."
-publishDate: 2026-04-06
+publishDate: 2026-06-17
 tags: ["alkohol", "kalorier", "helg", "vektnedgang", "kosthold"]
 ---
 

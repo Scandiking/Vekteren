@@ -1,7 +1,7 @@
 ---
 title: "Pålegget i kjøleskapet – hva er egentlig verdt å spise?"
 description: "Leverpostei, kaviar, makrell i tomat, brunost – pålegget er en sentral del av norsk kosthold. Noe av det er overraskende bra. Noe av det er mer bearbeidet enn det ser ut til."
-publishDate: 2026-04-10
+publishDate: 2026-08-05
 tags: ["pålegg", "norsk kosthold", "protein", "bearbeidet mat", "makrell", "matvaner"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Hvor mange kalorier forbrenner 10 000 skritt?"
 description: "10 000 skritt forbrenner ca. 300–500 kalorier, avhengig av vekt, tempo og terreng. Her får du konkrete tall og hva det faktisk betyr for vektnedgang."
-publishDate: 2026-04-06
+publishDate: 2026-06-07
 tags: ["kalorier", "gåing", "skritt", "forbrenning", "hverdagsaktivitet"]
 ---
 

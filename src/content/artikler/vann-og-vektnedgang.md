@@ -1,7 +1,7 @@
 ---
 title: "Hjelper det å drikke mye vann for å gå ned i vekt?"
 description: "Vann hjelper indirekte med vektnedgang – det reduserer sultfølelse, erstatter kaloririke drikker og kan øke forbrenningen litt. Men det er ikke et mirakelkur."
-publishDate: 2026-04-06
+publishDate: 2026-06-29
 tags: ["vann", "drikke", "forbrenning", "metthet", "vektnedgang"]
 ---
 
