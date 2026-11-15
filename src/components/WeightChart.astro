@@ -4,7 +4,7 @@
 // Extra columns are ignored. Both comma and semicolon delimiters are supported.
 ---
 
-<div class="relative w-full">
+<div id="chart-box" class="relative w-full">
   <div id="chart-loading" role="status" aria-live="polite" class="flex items-center justify-center h-72 gap-3 text-gray-400">
     <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -17,19 +17,80 @@
     Fant ingen vektdata. Legg filen <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded">weight-data.csv</code> i <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded">public/data/</code>.
   </div>
 
-  <div id="chart-wrap" class="hidden relative">
-    <canvas id="weightChart"></canvas>
-    <div
-      id="milestone-popup"
-      role="tooltip"
-      class="hidden absolute z-10 pointer-events-none max-w-xs rounded-lg border border-red-300 dark:border-red-500/50 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 shadow-lg px-3 py-2 text-xs"
-    ></div>
+  <div id="chart-wrap" class="hidden flex-col gap-3">
+    <div class="flex flex-wrap items-end gap-x-4 gap-y-2 text-xs text-gray-600 dark:text-gray-300">
+      <div class="flex items-center gap-1" role="group" aria-label="Hurtigvalg for tidsrom">
+        <button type="button" data-range="90" class="chart-btn">3 mnd</button>
+        <button type="button" data-range="180" class="chart-btn">6 mnd</button>
+        <button type="button" data-range="365" class="chart-btn">1 år</button>
+        <button type="button" data-range="all" class="chart-btn">Alt</button>
+      </div>
+      <label class="flex flex-col gap-0.5">
+        Fra
+        <input type="date" id="range-from" class="chart-input" />
+      </label>
+      <label class="flex flex-col gap-0.5">
+        Til
+        <input type="date" id="range-to" class="chart-input" />
+      </label>
+      <button type="button" id="chart-fullscreen" class="chart-btn ml-auto">Fullskjerm</button>
+    </div>
+
+    <div id="chart-canvas-box" class="relative h-80 sm:h-96">
+      <canvas id="weightChart" style="touch-action: pan-y"></canvas>
+      <div
+        id="milestone-popup"
+        role="tooltip"
+        class="hidden absolute z-10 pointer-events-none max-w-xs rounded-lg border border-red-300 dark:border-red-500/50 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 shadow-lg px-3 py-2 text-xs"
+      ></div>
+    </div>
+
+    <p class="text-xs text-gray-400 dark:text-gray-500">
+      Ctrl + rull for å zoome, dra for å flytte, dobbeltklikk for fullskjerm. På mobil: knip og dra.
+    </p>
   </div>
 </div>
+
+<style is:global>
+  .chart-btn {
+    border: 1px solid rgb(209 213 219);
+    border-radius: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    background: transparent;
+    cursor: pointer;
+  }
+  .chart-btn:hover { background: rgba(249, 115, 22, 0.12); border-color: #f97316; }
+  .chart-input {
+    border: 1px solid rgb(209 213 219);
+    border-radius: 0.375rem;
+    padding: 0.2rem 0.4rem;
+    background: transparent;
+    color: inherit;
+    color-scheme: light;
+  }
+  html.dark .chart-btn, html.dark .chart-input { border-color: rgb(75 85 99); }
+  html.dark .chart-input { color-scheme: dark; }
+
+  #chart-wrap:not(.hidden) { display: flex; }
+  #chart-box:fullscreen {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: #fff;
+  }
+  html.dark #chart-box:fullscreen { background: #030712; }
+  #chart-box:fullscreen #chart-wrap { flex: 1; min-height: 0; }
+  #chart-box:fullscreen #chart-canvas-box { flex: 1; min-height: 0; height: auto; }
+</style>
 
 <script>
   import Chart from 'chart.js/auto';
   import type { Plugin } from 'chart.js';
+  import 'chartjs-adapter-date-fns';
+  import zoomPlugin from 'chartjs-plugin-zoom';
+  import { nb } from 'date-fns/locale';
+
+  Chart.register(zoomPlugin);
 
   interface Milestone {
     date: string; // DD.MM.YYYY
@@ -37,10 +98,24 @@
     notes?: string[];
   }
 
+  // Local-time midnight, so the date shown never shifts with timezone.
   function parseDate(s: string): number {
     const m = s.trim().match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
-    return m ? Date.UTC(+m[3], +m[2] - 1, +m[1]) : NaN;
+    return m ? new Date(+m[3], +m[2] - 1, +m[1]).getTime() : NaN;
   }
+
+  function toIso(ts: number): string {
+    const d = new Date(ts);
+    const p = (n: number) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+  }
+
+  function fromIso(s: string): number {
+    const m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return m ? new Date(+m[1], +m[2] - 1, +m[3]).getTime() : NaN;
+  }
+
+  const DAY = 86_400_000;
 
   async function loadMilestones(): Promise<Milestone[]> {
     try {
@@ -57,7 +132,6 @@
   // xForDate() is the only place that depends on the x-axis type.
   function createMilestonePlugin(
     milestones: Milestone[],
-    timestamps: number[],
     popup: HTMLElement,
     isDark: boolean,
     onHoverChange: (hovering: boolean) => void,
@@ -66,20 +140,11 @@
     const HIT_PX = 6;
     let hovered: Milestone | null = null;
 
+    // Null when the date is outside the currently visible x range (zoomed/sliced).
     function xForDate(chart: Chart, ts: number): number | null {
-      const n = timestamps.length;
-      if (n === 0 || isNaN(ts) || ts < timestamps[0] || ts > timestamps[n - 1]) return null;
-      const meta = chart.getDatasetMeta(0);
-      for (let i = 0; i < n - 1; i++) {
-        if (ts >= timestamps[i] && ts <= timestamps[i + 1]) {
-          const a = meta.data[i]?.x;
-          const b = meta.data[i + 1]?.x;
-          if (a === undefined || b === undefined) return null;
-          const span = timestamps[i + 1] - timestamps[i];
-          return span === 0 ? a : a + ((ts - timestamps[i]) / span) * (b - a);
-        }
-      }
-      return null;
+      const scale = chart.scales.x;
+      if (isNaN(ts) || ts < scale.min || ts > scale.max) return null;
+      return scale.getPixelForValue(ts);
     }
 
     function showPopup(chart: Chart, m: Milestone, px: number, py: number) {
@@ -225,21 +290,42 @@
       let milestoneHover = false;
       const milestonePlugin = createMilestonePlugin(
         milestones,
-        dates.map(parseDate),
         popup,
         isDark,
         h => { milestoneHover = h; },
       );
 
-      new Chart(canvas, {
+      const ts = dates.map(parseDate);
+      const points = ts.map((x, i) => ({ x, y: weights[i] }));
+      const avgPoints = ts.map((x, i) => ({ x, y: avg7[i] }));
+      const dataMin = Math.min(...ts);
+      const dataMax = Math.max(...ts);
+
+      const fromInput = document.getElementById('range-from') as HTMLInputElement;
+      const toInput = document.getElementById('range-to') as HTMLInputElement;
+      for (const el of [fromInput, toInput]) {
+        el.min = toIso(dataMin);
+        el.max = toIso(dataMax);
+      }
+
+      // Keep the date inputs in sync with whatever range is visible (zoom, pan, buttons).
+      const syncPlugin: Plugin = {
+        id: 'rangeSync',
+        afterUpdate(chart) {
+          const { min, max } = chart.scales.x;
+          if (document.activeElement !== fromInput) fromInput.value = toIso(min);
+          if (document.activeElement !== toInput) toInput.value = toIso(max);
+        },
+      };
+
+      const chart = new Chart(canvas, {
         type: 'line',
-        plugins: [milestonePlugin],
+        plugins: [milestonePlugin, syncPlugin],
         data: {
-          labels: dates,
           datasets: [
             {
               label: 'Daglig vekt (kg)',
-              data: weights,
+              data: points,
               borderColor: 'rgba(249,115,22,0.35)',
               backgroundColor: 'transparent',
               pointRadius: 2,
@@ -250,7 +336,7 @@
             },
             {
               label: '7-dagers snitt (kg)',
-              data: avg7,
+              data: avgPoints,
               borderColor: '#f97316',
               backgroundColor: 'rgba(249,115,22,0.08)',
               fill: true,
@@ -264,8 +350,18 @@
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           interaction: { mode: 'index', intersect: false },
           plugins: {
+            zoom: {
+              limits: { x: { min: dataMin, max: dataMax, minRange: 7 * DAY } },
+              pan: { enabled: true, mode: 'x' },
+              zoom: {
+                wheel: { enabled: true, modifierKey: 'ctrl' },
+                pinch: { enabled: true },
+                mode: 'x',
+              },
+            },
             legend: {
               labels: {
                 color: tick,
@@ -276,15 +372,25 @@
             tooltip: {
               filter: () => !milestoneHover,
               callbacks: {
+                title: items => (items[0] ? new Date(items[0].parsed.x as number).toLocaleDateString('nb-NO') : ''),
                 label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(1) ?? '–'} kg`,
               },
             },
           },
           scales: {
             x: {
+              type: 'time',
+              min: dataMin,
+              max: dataMax,
+              adapters: { date: { locale: nb } },
+              time: {
+                tooltipFormat: 'dd.MM.yyyy',
+                displayFormats: { day: 'd. MMM', week: 'd. MMM', month: 'MMM yyyy', year: 'yyyy' },
+              },
               ticks: {
                 color: tick,
                 maxTicksLimit: 12,
+                maxRotation: 0,
                 font: { family: 'Inter, system-ui, sans-serif', size: 11 },
               },
               grid: { color: grid },
@@ -299,6 +405,45 @@
             },
           },
         },
+      });
+
+      // --- Range controls ---
+      function setRange(min: number, max: number) {
+        min = Math.max(dataMin, min);
+        max = Math.min(dataMax, max);
+        if (isNaN(min) || isNaN(max) || max - min < 7 * DAY) return;
+        chart.zoomScale('x', { min, max }, 'none');
+      }
+
+      document.querySelectorAll<HTMLButtonElement>('[data-range]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const r = btn.dataset.range;
+          if (r === 'all') chart.resetZoom('none');
+          else setRange(dataMax - Number(r) * DAY, dataMax);
+        });
+      });
+
+      const onDateInput = () => {
+        const from = fromInput.value ? fromIso(fromInput.value) : dataMin;
+        const to = toInput.value ? fromIso(toInput.value) : dataMax;
+        setRange(from, to);
+      };
+      fromInput.addEventListener('change', onDateInput);
+      toInput.addEventListener('change', onDateInput);
+
+      // --- Fullscreen ---
+      const box = document.getElementById('chart-box') as HTMLElement;
+      const fsBtn = document.getElementById('chart-fullscreen') as HTMLButtonElement;
+      const toggleFullscreen = () => {
+        if (document.fullscreenElement) document.exitFullscreen();
+        else box.requestFullscreen?.().catch(() => {});
+      };
+      if (!document.fullscreenEnabled) fsBtn.classList.add('hidden');
+      fsBtn.addEventListener('click', toggleFullscreen);
+      canvas.addEventListener('dblclick', toggleFullscreen);
+      document.addEventListener('fullscreenchange', () => {
+        fsBtn.textContent = document.fullscreenElement ? 'Avslutt fullskjerm' : 'Fullskjerm';
+        chart.resize();
       });
     } catch {
       document.getElementById('chart-loading')?.classList.add('hidden');
