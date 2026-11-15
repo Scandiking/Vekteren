@@ -17,13 +17,161 @@
     Fant ingen vektdata. Legg filen <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded">weight-data.csv</code> i <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded">public/data/</code>.
   </div>
 
-  <div id="chart-wrap" class="hidden">
+  <div id="chart-wrap" class="hidden relative">
     <canvas id="weightChart"></canvas>
+    <div
+      id="milestone-popup"
+      role="tooltip"
+      class="hidden absolute z-10 pointer-events-none max-w-xs rounded-lg border border-red-300 dark:border-red-500/50 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 shadow-lg px-3 py-2 text-xs"
+    ></div>
   </div>
 </div>
 
 <script>
   import Chart from 'chart.js/auto';
+  import type { Plugin } from 'chart.js';
+
+  interface Milestone {
+    date: string; // DD.MM.YYYY
+    label: string;
+    notes?: string[];
+  }
+
+  function parseDate(s: string): number {
+    const m = s.trim().match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+    return m ? Date.UTC(+m[3], +m[2] - 1, +m[1]) : NaN;
+  }
+
+  async function loadMilestones(): Promise<Milestone[]> {
+    try {
+      const res = await fetch('/data/milestones.json');
+      if (!res.ok) return [];
+      const json = await res.json();
+      return Array.isArray(json) ? json : [];
+    } catch {
+      return [];
+    }
+  }
+
+  // Vertical red milestone lines with label and hover popup.
+  // xForDate() is the only place that depends on the x-axis type.
+  function createMilestonePlugin(
+    milestones: Milestone[],
+    timestamps: number[],
+    popup: HTMLElement,
+    isDark: boolean,
+    onHoverChange: (hovering: boolean) => void,
+  ): Plugin {
+    const red = isDark ? '#f87171' : '#ef4444';
+    const HIT_PX = 6;
+    let hovered: Milestone | null = null;
+
+    function xForDate(chart: Chart, ts: number): number | null {
+      const n = timestamps.length;
+      if (n === 0 || isNaN(ts) || ts < timestamps[0] || ts > timestamps[n - 1]) return null;
+      const meta = chart.getDatasetMeta(0);
+      for (let i = 0; i < n - 1; i++) {
+        if (ts >= timestamps[i] && ts <= timestamps[i + 1]) {
+          const a = meta.data[i]?.x;
+          const b = meta.data[i + 1]?.x;
+          if (a === undefined || b === undefined) return null;
+          const span = timestamps[i + 1] - timestamps[i];
+          return span === 0 ? a : a + ((ts - timestamps[i]) / span) * (b - a);
+        }
+      }
+      return null;
+    }
+
+    function showPopup(chart: Chart, m: Milestone, px: number, py: number) {
+      popup.replaceChildren();
+      const title = document.createElement('p');
+      title.className = 'font-semibold mb-1';
+      title.textContent = m.label;
+      popup.appendChild(title);
+      const ul = document.createElement('ul');
+      ul.className = 'list-disc pl-4 space-y-0.5';
+      for (const note of m.notes ?? []) {
+        const li = document.createElement('li');
+        li.textContent = note;
+        ul.appendChild(li);
+      }
+      popup.appendChild(ul);
+      popup.classList.remove('hidden');
+      const maxLeft = chart.width - popup.offsetWidth - 4;
+      const left = Math.max(4, Math.min(px + 14, maxLeft));
+      const top = Math.max(4, Math.min(py + 14, chart.height - popup.offsetHeight - 4));
+      popup.style.left = `${left}px`;
+      popup.style.top = `${top}px`;
+    }
+
+    function hidePopup(chart: Chart) {
+      if (!hovered) return;
+      hovered = null;
+      popup.classList.add('hidden');
+      chart.canvas.style.cursor = '';
+      onHoverChange(false);
+    }
+
+    return {
+      id: 'milestoneLines',
+      afterEvent(chart, args) {
+        const e = args.event;
+        if (e.type === 'mouseout') {
+          hidePopup(chart);
+          return;
+        }
+        if (e.type !== 'mousemove' && e.type !== 'click') return;
+        const { chartArea } = chart;
+        let hit: Milestone | null = null;
+        let hitX = 0;
+        if (e.x !== null && e.y !== null && e.y >= chartArea.top && e.y <= chartArea.bottom) {
+          for (const m of milestones) {
+            if (!m.notes?.length) continue;
+            const x = xForDate(chart, parseDate(m.date));
+            if (x !== null && Math.abs(e.x - x) <= HIT_PX) {
+              hit = m;
+              hitX = x;
+              break;
+            }
+          }
+        }
+        if (hit && e.x !== null && e.y !== null) {
+          if (hovered !== hit) {
+            hovered = hit;
+            onHoverChange(true);
+          }
+          chart.canvas.style.cursor = 'pointer';
+          showPopup(chart, hit, Math.max(e.x, hitX), e.y);
+        } else {
+          hidePopup(chart);
+        }
+      },
+      afterDraw(chart) {
+        const { ctx, chartArea } = chart;
+        milestones.forEach((m, idx) => {
+          const x = xForDate(chart, parseDate(m.date));
+          if (x === null) return;
+          ctx.save();
+          ctx.beginPath();
+          ctx.setLineDash([5, 4]);
+          ctx.strokeStyle = red;
+          ctx.lineWidth = hovered === m ? 2.5 : 1.5;
+          ctx.moveTo(x, chartArea.top);
+          ctx.lineTo(x, chartArea.bottom);
+          ctx.stroke();
+
+          ctx.setLineDash([]);
+          ctx.fillStyle = red;
+          ctx.font = '11px Inter, system-ui, sans-serif';
+          const textW = ctx.measureText(m.label).width;
+          const flip = x + 6 + textW > chartArea.right;
+          ctx.textAlign = flip ? 'right' : 'left';
+          ctx.fillText(m.label, flip ? x - 6 : x + 6, chartArea.top + 14 + idx * 14);
+          ctx.restore();
+        });
+      },
+    };
+  }
 
   function rollingAverage(data: number[], window: number): number[] {
     return data.map((_, i) => {
@@ -38,6 +186,7 @@
       const res = await fetch('/data/weight-data.csv');
       if (!res.ok) throw new Error('fetch failed');
       const text = await res.text();
+      const milestones = await loadMilestones();
 
       const lines = text.trim().split('\n').filter(l => l.trim());
       if (lines.length < 2) throw new Error('no data');
@@ -72,8 +221,19 @@
       const grid = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)';
       const tick = isDark ? '#9ca3af' : '#6b7280';
 
+      const popup = document.getElementById('milestone-popup') as HTMLElement;
+      let milestoneHover = false;
+      const milestonePlugin = createMilestonePlugin(
+        milestones,
+        dates.map(parseDate),
+        popup,
+        isDark,
+        h => { milestoneHover = h; },
+      );
+
       new Chart(canvas, {
         type: 'line',
+        plugins: [milestonePlugin],
         data: {
           labels: dates,
           datasets: [
@@ -114,6 +274,7 @@
               },
             },
             tooltip: {
+              filter: () => !milestoneHover,
               callbacks: {
                 label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(1) ?? '–'} kg`,
               },
