@@ -1,0 +1,88 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export type SizeToken = 'featured' | 'big' | 'normal';
+
+interface Props {
+  artikkel: CollectionEntry<'artikler'>;
+  size: SizeToken;
+}
+
+const { artikkel, size } = Astro.props;
+
+// Bigger tokens only get wider (col-span), never taller (no row-span) — that
+// keeps each grid row's height driven by its own content instead of forcing
+// shorter neighboring cards to stretch and leave blank space inside them.
+const sizeClasses: Record<SizeToken, string> = {
+  featured: 'sm:col-span-2 lg:col-span-4',
+  big: 'sm:col-span-2 lg:col-span-3',
+  normal: 'lg:col-span-2',
+};
+
+const titleClasses: Record<SizeToken, string> = {
+  featured: 'text-2xl sm:text-3xl',
+  big: 'text-xl',
+  normal: 'text-lg',
+};
+
+const descriptionClasses: Record<SizeToken, string> = {
+  featured: 'line-clamp-4',
+  big: 'line-clamp-3',
+  normal: 'line-clamp-3',
+};
+---
+
+<a
+  href={`/artikler/${artikkel.slug}`}
+  class:list={[
+    'group relative flex flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:border-orange-500/50 transition-all duration-200 hover:-translate-y-1',
+    sizeClasses[size],
+  ]}
+>
+  {artikkel.data.image && (
+    <div class="w-full overflow-hidden" style={size === 'normal' ? 'aspect-ratio: 16/9' : 'aspect-ratio: 21/9'}>
+      <img
+        src={artikkel.data.image.src}
+        alt={artikkel.data.image.alt}
+        loading="lazy"
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+      />
+    </div>
+  )}
+
+  <div class="flex flex-col p-6">
+    <div class="flex flex-wrap gap-2 mb-3">
+      {artikkel.data.tags.map((tag: string) => (
+        <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400">
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <h2
+      class:list={[
+        'font-bold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors mb-2',
+        titleClasses[size],
+      ]}
+    >
+      {artikkel.data.title}
+    </h2>
+
+    <p
+      class:list={[
+        'text-sm text-gray-600 dark:text-gray-300 leading-relaxed',
+        descriptionClasses[size],
+      ]}
+    >
+      {artikkel.data.description}
+    </p>
+
+    <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">
+      {artikkel.data.publishDate.toLocaleDateString('nb-NO', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })}
+    </p>
+  </div>
+</a>

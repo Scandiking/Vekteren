@@ -45,7 +45,7 @@ const { Content } = await entry.render();
           {entry.data.description}
         </p>
 
-        <div class="flex items-center gap-3 text-sm text-gray-400 dark:text-gray-500">
+        <div class="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
           <span>Kris</span>
           <span>·</span>
           <time datetime={entry.data.publishDate.toISOString()}>
@@ -66,14 +66,14 @@ const { Content } = await entry.render();
             class="w-full rounded-lg object-cover max-h-96"
             loading="lazy"
           />
-          <figcaption class="mt-2 px-4 sm:px-6 text-xs text-gray-400 dark:text-gray-500">
+          <figcaption class="mt-2 px-4 sm:px-6 text-xs text-gray-500 dark:text-gray-400">
             {entry.data.image.credit}
           </figcaption>
         </figure>
       )}
 
       <div class="border-t border-gray-200 dark:border-gray-800 pt-10">
-        <div class="prose prose-gray dark:prose-invert prose-lg max-w-none">
+        <div class="prose prose-gray dark:prose-invert prose-lg max-w-prose">
           <Content />
         </div>
       </div>

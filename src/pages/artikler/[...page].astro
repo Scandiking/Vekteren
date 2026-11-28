@@ -1,0 +1,301 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PushSubscribe from '../../components/PushSubscribe.astro';
+import ArticleCard, { type SizeToken } from '../../components/ArticleCard.astro';
+import { getSortedArticles } from '../../lib/articles';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  // Must live inside getStaticPaths: Astro hoists this function out of the frontmatter scope.
+  const PAGE_SIZE = 20;
+  const artikler = await getSortedArticles();
+  const allTags = [...new Set(artikler.flatMap(a => a.data.tags))].sort((a, b) =>
+    a.localeCompare(b, 'nb-NO')
+  );
+  return paginate(artikler, { pageSize: PAGE_SIZE, props: { allTags } });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page<CollectionEntry<'artikler'>>;
+  allTags: string[];
+}
+
+const { page, allTags } = Astro.props;
+
+// Size and ad-slot rhythm follow the article's position in the whole archive,
+// not on the current page, so only the newest article is ever "featured".
+function sizeToken(globalIndex: number): SizeToken {
+  if (globalIndex === 0) return 'featured';
+  if (globalIndex % 6 === 0) return 'big';
+  return 'normal';
+}
+
+// Reserve an ad-slot placeholder after every 3rd "big" tile (i.e. every 18 articles
+// after the featured one), so a future ad unit has a pre-sized home in the grid.
+function isAdSlotAfter(globalIndex: number): boolean {
+  return globalIndex > 0 && globalIndex % 18 === 0;
+}
+
+const pageNumbers = Array.from({ length: page.lastPage }, (_, i) => i + 1);
+const pageUrl = (n: number) => (n === 1 ? '/artikler' : `/artikler/${n}`);
+const title = page.currentPage === 1 ? 'Artikler' : `Artikler – side ${page.currentPage}`;
+---
+
+<BaseLayout title={title} description="Artikler og tanker om vektnedgang, mat, trening og motivasjon.">
+
+  <section class="bg-white dark:bg-gray-950">
+    <div class="section-wrap">
+      <div class="inline-block text-xs uppercase tracking-widest font-semibold text-orange-500 mb-3">Blogg</div>
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-3">
+        <h1 class="section-title mb-0">Artikler</h1>
+        <div class="flex items-center gap-4">
+          <PushSubscribe />
+          <a
+            href="/rss.xml"
+            class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248S0 22.546 0 20.752s1.456-3.248 3.252-3.248 3.251 1.454 3.251 3.248zM1.677 6.462v4.062c8.75 0 15.799 7.048 15.799 15.798h4.062c0-10.958-8.899-19.86-19.861-19.86zm0 7.663v4.062c4.663 0 8.4 3.738 8.4 8.4h4.062c0-6.892-5.57-12.462-12.462-12.462z"/>
+            </svg>
+            RSS
+          </a>
+        </div>
+      </div>
+      <p class="section-sub">
+        Fordypninger, tanker og erfaringer. Noen er kortere, noen er lange.
+        Alle er ærlige.
+      </p>
+
+      {page.total === 0 ? (
+        <div class="card text-center py-16 text-gray-400 dark:text-gray-500">
+          <p class="text-lg mb-2">Ingen artikler ennå.</p>
+          <p class="text-sm">Legg til <code>.md</code>-filer i <code>src/content/artikler/</code> for å komme i gang.</p>
+        </div>
+      ) : (
+        <div class="flex flex-col lg:grid lg:grid-cols-5 lg:gap-8 lg:items-start">
+          <!-- Sidebar: search + tags (~20%) -->
+          <aside class="order-1 lg:order-2 lg:col-span-1 mb-8 lg:mb-0">
+            <div class="flex flex-col gap-3 lg:sticky lg:top-24">
+              <div class="relative">
+                <input
+                  type="search"
+                  id="article-search"
+                  placeholder="Søk i artikler…"
+                  class="form-input pr-10"
+                  aria-label="Søk i artikler"
+                />
+                <button
+                  type="button"
+                  id="search-btn"
+                  aria-label="Søk"
+                  class="absolute right-1 top-1/2 -translate-y-1/2 p-2 rounded-lg text-gray-400 hover:text-orange-500 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Capped height so the sidebar stays shorter than the viewport and sticky keeps working -->
+              <div id="tag-chips" class="flex flex-wrap gap-2 max-h-24 lg:max-h-[300px] overflow-y-auto pr-1">
+                {allTags.map(tag => (
+                  <button
+                    type="button"
+                    data-tag={tag}
+                    aria-pressed="false"
+                    class="tag-chip px-3 py-1 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400 hover:bg-orange-200 dark:hover:bg-orange-500/25 transition-colors"
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </aside>
+
+          <!-- Feed (~80%) -->
+          <div class="order-2 lg:order-1 lg:col-span-4">
+            <p id="no-results" class="hidden card text-center py-16 text-gray-400 dark:text-gray-500">
+              Ingen artikler matcher søket.
+            </p>
+
+            <!-- Filtered results across the whole archive, rendered client-side from /artikler/sok.json -->
+            <div id="search-results" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 items-start"></div>
+
+            <div id="paged-feed">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 items-start">
+                {page.data.flatMap((artikkel, i) => {
+                  const globalIndex = page.start + i;
+                  const tile = <ArticleCard artikkel={artikkel} size={sizeToken(globalIndex)} />;
+
+                  if (isAdSlotAfter(globalIndex)) {
+                    // AD SLOT: reserved for future ad unit
+                    return [
+                      tile,
+                      <div
+                        class="hidden lg:flex lg:col-span-2 items-center justify-center rounded-xl border border-dashed border-gray-300 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-600"
+                        aria-hidden="true"
+                      >
+                        Annonseplass
+                      </div>,
+                    ];
+                  }
+                  return [tile];
+                })}
+              </div>
+
+              {page.lastPage > 1 && (
+                <nav class="mt-12 flex flex-wrap items-center justify-center gap-2" aria-label="Sidenavigasjon">
+                  {page.url.prev && (
+                    <a href={page.url.prev} class="px-3 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-orange-500 transition-colors">
+                      ← Nyere
+                    </a>
+                  )}
+                  {pageNumbers.map(n => (
+                    n === page.currentPage ? (
+                      <span aria-current="page" class="px-3 py-2 rounded-lg text-sm font-semibold bg-orange-500 text-white">{n}</span>
+                    ) : (
+                      <a href={pageUrl(n)} class="px-3 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">{n}</a>
+                    )
+                  ))}
+                  {page.url.next && (
+                    <a href={page.url.next} class="px-3 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-orange-500 transition-colors">
+                      Eldre →
+                    </a>
+                  )}
+                </nav>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  interface IndexEntry {
+    slug: string;
+    title: string;
+    description: string;
+    tags: string[];
+    date: string;
+    image: { src: string; alt: string } | null;
+  }
+
+  const searchInput = document.getElementById('article-search') as HTMLInputElement | null;
+  const searchBtn = document.getElementById('search-btn') as HTMLButtonElement | null;
+  const tagChips = document.querySelectorAll<HTMLButtonElement>('.tag-chip');
+  const pagedFeed = document.getElementById('paged-feed');
+  const results = document.getElementById('search-results');
+  const noResults = document.getElementById('no-results');
+
+  const selectedTags = new Set<string>();
+  const SEARCH_DEBOUNCE_MS = 400;
+  let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+  let indexPromise: Promise<IndexEntry[]> | undefined;
+
+  // The full index is only needed once someone filters, so fetch it lazily.
+  function loadIndex(): Promise<IndexEntry[]> {
+    indexPromise ??= fetch('/artikler/sok.json').then(r => r.json());
+    return indexPromise;
+  }
+
+  function el<K extends keyof HTMLElementTagNameMap>(tag: K, className: string, text?: string) {
+    const node = document.createElement(tag);
+    node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  // Mirrors the "normal" size of ArticleCard.astro.
+  function renderCard(a: IndexEntry): HTMLAnchorElement {
+    const card = el('a', 'group relative flex flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:border-orange-500/50 transition-all duration-200 hover:-translate-y-1 lg:col-span-2');
+    card.href = `/artikler/${a.slug}`;
+
+    if (a.image) {
+      const wrap = el('div', 'w-full overflow-hidden');
+      wrap.style.aspectRatio = '16/9';
+      const img = el('img', 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-300');
+      img.src = a.image.src;
+      img.alt = a.image.alt;
+      img.loading = 'lazy';
+      wrap.append(img);
+      card.append(wrap);
+    }
+
+    const body = el('div', 'flex flex-col p-6');
+    const tags = el('div', 'flex flex-wrap gap-2 mb-3');
+    for (const t of a.tags) {
+      tags.append(el('span', 'px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400', t));
+    }
+    const date = new Date(a.date).toLocaleDateString('nb-NO', { year: 'numeric', month: 'long', day: 'numeric' });
+    body.append(
+      tags,
+      el('h2', 'font-bold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors mb-2 text-lg', a.title),
+      el('p', 'text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3', a.description),
+      el('p', 'text-xs text-gray-500 dark:text-gray-400 mt-4', date),
+    );
+    card.append(body);
+    return card;
+  }
+
+  async function applyFilter() {
+    const query = (searchInput?.value ?? '').trim().toLowerCase();
+    const filtering = query !== '' || selectedTags.size > 0;
+
+    if (!filtering) {
+      pagedFeed?.classList.remove('hidden');
+      results?.classList.add('hidden');
+      noResults?.classList.add('hidden');
+      return;
+    }
+
+    const index = await loadIndex();
+    const matches = index.filter(a => {
+      const matchesText = query === '' || a.title.toLowerCase().includes(query) || a.description.toLowerCase().includes(query);
+      const matchesTags = [...selectedTags].every(t => a.tags.includes(t));
+      return matchesText && matchesTags;
+    });
+
+    results?.replaceChildren(...matches.map(renderCard));
+    pagedFeed?.classList.add('hidden');
+    results?.classList.toggle('hidden', matches.length === 0);
+    noResults?.classList.toggle('hidden', matches.length > 0);
+  }
+
+  function scheduleFilter() {
+    if (debounceTimer) clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(applyFilter, SEARCH_DEBOUNCE_MS);
+  }
+
+  function runFilterNow() {
+    if (debounceTimer) clearTimeout(debounceTimer);
+    applyFilter();
+  }
+
+  // Typing filters automatically after a short pause, so results don't
+  // jump around on every keystroke. The search button and Enter key run
+  // it immediately for anyone used to hitting "search".
+  searchInput?.addEventListener('input', scheduleFilter);
+  searchInput?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') runFilterNow();
+  });
+  searchBtn?.addEventListener('click', runFilterNow);
+
+  tagChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const tag = chip.dataset.tag ?? '';
+      const selected = !selectedTags.has(tag);
+      if (selected) selectedTags.add(tag);
+      else selectedTags.delete(tag);
+      chip.classList.toggle('bg-orange-500', selected);
+      chip.classList.toggle('text-white', selected);
+      chip.classList.toggle('dark:bg-orange-500', selected);
+      chip.classList.toggle('dark:text-white', selected);
+      chip.setAttribute('aria-pressed', String(selected));
+      applyFilter();
+    });
+  });
+</script>

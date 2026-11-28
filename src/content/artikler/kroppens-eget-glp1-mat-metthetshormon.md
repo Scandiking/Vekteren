@@ -2,7 +2,7 @@
 title: "Kroppens eget GLP-1 – kan maten gi samme metthetseffekt som Ozempic?"
 description: "«Naturlig Ozempic» er blitt et snakketema, men hva skjer egentlig når forskere sier at visse matvarer øker kroppens eget GLP-1? Her er hva som faktisk påvirker hormonet – og hvor stor forskjellen er til medisinene."
 publishDate: 2026-11-11
-tags: ["GLP-1", "metthet", "kosthold", "ozempic", "fiber", "protein", "vektnedgang"]
+tags: ["glp-1", "metthet", "kosthold", "ozempic", "fiber", "protein", "vektnedgang"]
 ---
 
 De siste årene har «naturlig Ozempic» blitt et begrep i kommentarfelt og helsesnakk – påstanden om at visse matvarer kan trigge kroppens eget metthetshormon GLP-1, omtrent som slankemedisinene gjør. Det er en fristende idé: samme effekt, uten resept, bivirkninger eller kostnad. Spørsmålet er hva som faktisk stemmer av dette, og hva som er forenklet markedsspråk.

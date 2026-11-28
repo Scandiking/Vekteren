@@ -2,7 +2,7 @@
 title: "Spisehastighet og metthet – derfor lurer rask spising hjernen din"
 description: "Metthetshormonene bruker rundt 20 minutter på å nå hjernen. Spiser du fort, rekker du å innta langt mer mat enn du trenger før signalet kommer. Her er forskningen – og hvordan du faktisk bremser tempoet i praksis."
 publishDate: 2026-08-21
-tags: ["spisehastighet", "metthet", "hormoner", "GLP-1", "kosthold", "hverdagsvaner"]
+tags: ["spisehastighet", "metthet", "hormoner", "glp-1", "kosthold", "hverdagsvaner"]
 ---
 
 Du har sikkert hørt rådet «spis saktere» hundre ganger. Det som sjelden følger med, er hvorfor det faktisk virker – og hvor stor effekten kan være. Dette er ikke en av de myke, vage rådene fra en slankeblogg. Det er et konkret tidsproblem mellom munn og hjerne, og det er godt dokumentert i forskningen.

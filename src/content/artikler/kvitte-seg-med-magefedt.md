@@ -2,7 +2,7 @@
 title: "Slik kvitter du deg med magefedt"
 description: "Du kan ikke forbrenne fett på ett spesifikt sted. Men du kan gå ned i totalvekt – og magen er ofte et av de første stedene du merker det. Her er hva som faktisk virker."
 publishDate: 2026-06-22
-tags: ["magefedt", "magevekt", "fettforbrenning", "vektnedgang", "kosthold"]
+tags: ["magefett", "fettforbrenning", "vektnedgang", "kosthold"]
 ---
 
 Du kan ikke bestemme *hvor* kroppen forbrenner fett. Magøvelser gir sterkere magemusklene, men de brenner ikke magefettet. Den eneste måten å miste magefedt på er å **gå ned i totalvekt** – og for de fleste er magen blant de første stedene det skjer.

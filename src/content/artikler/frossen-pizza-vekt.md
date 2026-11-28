@@ -2,7 +2,7 @@
 title: "Frossen pizza og vekt – hva Grandiosa ikke forteller deg"
 description: "Grandiosa er nesten et norsk kulturminne. Men frossen pizza er et av de mest gjennomoptimaliserte ultraprosesserte produktene i butikkhyllen – og kroppen din reagerer deretter."
 publishDate: 2026-07-13
-tags: ["ultraprosessert mat", "frossen pizza", "vektnedgang", "kalorier", "metthet", "matvaner"]
+tags: ["ultraprosessert", "frossen pizza", "vektnedgang", "kalorier", "metthet", "matvaner"]
 image:
   src: "/images/artikler/frossen-pizza.jpg"
   alt: "Frossen pizza i emballasje"
