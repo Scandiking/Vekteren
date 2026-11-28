@@ -180,6 +180,7 @@ const title = page.currentPage === 1 ? 'Artikler' : `Artikler – side ${page.cu
     title: string;
     description: string;
     tags: string[];
+    cardTags: string[];
     date: string;
     image: { src: string; alt: string } | null;
   }
@@ -226,16 +227,17 @@ const title = page.currentPage === 1 ? 'Artikler' : `Artikler – side ${page.cu
     }
 
     const body = el('div', 'flex flex-col p-6');
-    const tags = el('div', 'flex flex-wrap gap-2 mb-3');
-    for (const t of a.tags) {
-      tags.append(el('span', 'px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400', t));
+    const meta = el('div', 'mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-gray-500 dark:text-gray-400');
+    const time = el('time', '', new Date(a.date).toLocaleDateString('nb-NO', { year: 'numeric', month: 'long', day: 'numeric' }));
+    time.dateTime = a.date;
+    meta.append(time);
+    for (const t of a.cardTags) {
+      meta.append(el('span', 'px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700/60 text-gray-600 dark:text-gray-300', t));
     }
-    const date = new Date(a.date).toLocaleDateString('nb-NO', { year: 'numeric', month: 'long', day: 'numeric' });
     body.append(
-      tags,
       el('h2', 'font-bold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors mb-2 text-lg', a.title),
       el('p', 'text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3', a.description),
-      el('p', 'text-xs text-gray-500 dark:text-gray-400 mt-4', date),
+      meta,
     );
     card.append(body);
     return card;

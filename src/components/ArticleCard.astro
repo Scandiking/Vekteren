@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { cardTags } from '../lib/articles';
 
 export type SizeToken = 'featured' | 'big' | 'normal';
 
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const { artikkel, size } = Astro.props;
+const tags = cardTags(artikkel.data.tags);
 
 // Bigger tokens only get wider (col-span), never taller (no row-span) — that
 // keeps each grid row's height driven by its own content instead of forcing
@@ -51,14 +53,6 @@ const descriptionClasses: Record<SizeToken, string> = {
   )}
 
   <div class="flex flex-col p-6">
-    <div class="flex flex-wrap gap-2 mb-3">
-      {artikkel.data.tags.map((tag: string) => (
-        <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400">
-          {tag}
-        </span>
-      ))}
-    </div>
-
     <h2
       class:list={[
         'font-bold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors mb-2',
@@ -77,12 +71,19 @@ const descriptionClasses: Record<SizeToken, string> = {
       {artikkel.data.description}
     </p>
 
-    <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">
-      {artikkel.data.publishDate.toLocaleDateString('nb-NO', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })}
-    </p>
+    <div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-gray-500 dark:text-gray-400">
+      <time datetime={artikkel.data.publishDate.toISOString()}>
+        {artikkel.data.publishDate.toLocaleDateString('nb-NO', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </time>
+      {tags.map(tag => (
+        <span class="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700/60 text-gray-600 dark:text-gray-300">
+          {tag}
+        </span>
+      ))}
+    </div>
   </div>
 </a>
